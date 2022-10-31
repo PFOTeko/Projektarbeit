@@ -1,0 +1,10 @@
+Class Konto 
+Class Kunde
+Class Medium
+Class Leihe
+Class Suche
+Class MediumStatus
+Class Wunschzettel 
+Class Anschaffung
+
+
