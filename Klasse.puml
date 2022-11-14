@@ -1,0 +1,52 @@
+@startuml
+
+class Schlange{
+Position
+} 
+class Kopf{
+}
+
+class Koerperteil{
+}
+
+class Futter{
+status
+} 
+
+class Bonusfutter{
+
+}
+
+class Spielfeld{
+rahmen
+new game()
+pause()
+punktestand
+game over anzeige
+position
+} 
+
+class Bewegungen{
+Tastatur abfragen()
+timer()
+} 
+
+class Crashing{
+rand
+self
+} 
+
+class Menu{
+speed
+rangliste
+} 
+
+Spielfeld -- Schlange
+Spielfeld -- Futter
+Schlange -- Bewegungen
+Spielfeld -- Crashing
+Spielfeld -- Menu
+Futter <|-- Bonusfutter
+Schlange  "1"--"1" Kopf
+Schlange "1"--"*" Koerperteil
+@enduml

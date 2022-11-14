@@ -1,6 +1,6 @@
 import unittest
 
-from  Testing import snake
+from  Testing import snaketest
 
 class TestCrashing(unittest.TestCase):
 
