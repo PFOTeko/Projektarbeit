@@ -1,6 +1,5 @@
 import unittest
 
-from  Testing import snaketest
 
 class TestCrashing(unittest.TestCase):
 
