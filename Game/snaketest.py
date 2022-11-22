@@ -10,7 +10,7 @@ class TestSnake(unittest.TestCase):
         snake = Snake()
 
         # Act
-        actual_result = snake.move_snake('down')
+        actual_result = snake.move_snake('up', False)
 
         # Assert
         self.assertTrue(actual_result)
