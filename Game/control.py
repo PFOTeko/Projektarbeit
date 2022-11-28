@@ -3,7 +3,7 @@ import tkinter as tk
 
 def up(event):
 
-    print('Taste UP')
+    print(event.keysym)
 
 
 window = tk.Tk()
