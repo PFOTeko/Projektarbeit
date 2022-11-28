@@ -1,6 +1,6 @@
 import unittest
 
-from keyboard import PressedKey
+from control import PressedKey
 
 
 class TestFood(unittest.TestCase):
