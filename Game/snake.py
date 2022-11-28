@@ -31,6 +31,6 @@ class Snake:
                 self.snake_body.insert(0, new_head_position)
                 self.snake_body.pop()
 
-        # print(self.snake_body) # Ausgabe der Schlange
+        #print(self.snake_body) # Ausgabe der Schlange
 
-        return self.bitten
+        return self.snake_body, self.bitten

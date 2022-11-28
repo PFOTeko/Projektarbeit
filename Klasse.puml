@@ -1,20 +1,14 @@
 @startuml
 
 class Schlange{
-Position
-} 
-class Kopf{
-}
-
-class Koerperteil{
+Anzahl Körperteil
 }
 
 class Futter{
-status
-} 
+Typ
+}
 
 class Bonusfutter{
-
 }
 
 class Spielfeld{
@@ -28,12 +22,10 @@ position
 
 class Bewegungen{
 Tastatur abfragen()
-timer()
 } 
 
 class Crashing{
-rand
-self
+Rand
 } 
 
 class Menu{
@@ -43,10 +35,8 @@ rangliste
 
 Spielfeld -- Schlange
 Spielfeld -- Futter
-Schlange -- Bewegungen
+Spielfeld -- Bewegungen
 Spielfeld -- Crashing
 Spielfeld -- Menu
 Futter <|-- Bonusfutter
-Schlange  "1"--"1" Kopf
-Schlange "1"--"*" Koerperteil
 @enduml
