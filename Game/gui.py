@@ -1,16 +1,19 @@
 import tkinter as tk
+import controller
 
 
 class Gui:
 
     def __init__(self):
+
         self.window = tk.Tk()
         self.window.title("Snake")
         self.window.geometry("600x800")
         self.window.resizable(width=False, height=False)
-
+        self.window.bind('<Key>',  controller.Controller.pressed)
         self.spielfeld()
         self.window.mainloop()
+
 
     def spielfeld(self):
         field = tk.Canvas(self.window, width=600, height=600, background="#F5F5DC")
@@ -27,7 +30,3 @@ class Gui:
 
         menu_button = tk.Button(text="Menu", width=15, height=2)
         menu_button.place(x=310, y=675)
-
-
-if __name__ == "__main__":
-    gui = Gui()
