@@ -1,6 +1,6 @@
 import unittest
 
-from food import Food
+from Archiv.food import Food
 
 
 class TestFood(unittest.TestCase):

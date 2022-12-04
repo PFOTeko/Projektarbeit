@@ -1,26 +1,22 @@
-import gui
+from Game import gui
+from Game import field
 
 
 class Controller:
 
     def __init__(self):
-        self.view = gui.Gui()
-        self.event
-        self.model
+        self.gui = gui.Gui()
+        self.field = field.Field()
 
     def model(self):
         print('Hallo Welt')
-        self.model
-
-    def view(self):
-        self.view
 
     def pressed(event):
         pressed = event.keysym
         keys = ['Up', 'Down', 'Right', 'Left']
 
         if pressed in keys:
-
+            Controller.model(pressed)
             print(event.keysym)
 
 

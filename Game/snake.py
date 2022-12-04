@@ -4,7 +4,7 @@ class Snake:
 
         self.snake_body = [(0, 0), (1, 0), (2, 0)]
         self.direction = None
-        self.moves = {'up': (0, -1), 'down': (0, 1), 'left': (-1, 0), 'right': (1, 0)}
+        self.moves = {'Up': (0, -1), 'Down': (0, 1), 'Left': (-1, 0), 'Right': (1, 0)}
         self.movement = None
         self.bitten = None
 
