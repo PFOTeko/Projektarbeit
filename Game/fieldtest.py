@@ -7,7 +7,7 @@ class TestField(unittest.TestCase):
 
     def test_field(self):
 
-        field = Field(400, 400, 20, 'Up')
+        field = Field(400, 400, 20, 'Down')
 
         # Act
         actual_result = field.playing_field()
