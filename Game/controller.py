@@ -6,7 +6,14 @@ class Controller:
 
     def __init__(self):
         self.gui = gui.Gui()
-        self.field = field.Field()
+        self.gui.register_callback(self.gui_callbacks)
+
+        #self.field = field.Field()
+
+        self.gui.show_window()
+
+    def gui_callbacks(self, event, data):
+        print("gui_callbacks: " + str(event))
 
     def model(self):
 

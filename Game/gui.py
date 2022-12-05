@@ -1,8 +1,9 @@
 import tkinter as tk
 import controller as c
+from observable import Observable
 
 
-class Gui:
+class Gui(Observable):
 
     def __init__(self):
 
@@ -10,9 +11,17 @@ class Gui:
         self.window.title("Snake")
         self.window.geometry("600x800")
         self.window.resizable(width=False, height=False)
-        self.window.bind('<Key>',  c.Controller.pressed)
+        #self.window.bind('<Key>',  c.Controller.pressed) #statische implementierung
+        self.window.bind('<Key>', self.pressed)
         self.spielfeld()
+
+
+    def show_window(self):
         self.window.mainloop()
+
+    def pressed(self, event):
+        self._notify("gui_pressed", "my event" )
+        pass
 
     def spielfeld(self):
 
