@@ -10,6 +10,8 @@ class Controller:
 
         #self.field = field.Field()
 
+
+    def start_gui(self):
         self.gui.show_window()
 
     def gui_callbacks(self, event, data):
@@ -30,3 +32,4 @@ class Controller:
 
 if __name__ == "__main__":
     start = Controller()
+    start.start_gui()
