@@ -11,18 +11,19 @@ class Gui(Observable):
         self.window.title("Snake")
         self.window.geometry("600x800")
         self.window.resizable(width=False, height=False)
-        #self.window.bind('<Key>',  c.Controller.pressed) #statische implementierung
-        self.window.bind('<Key>', self.pressed)
+        self.window.bind('<Key>',  c.Controller.pressed) #statische implementierung
+        #self.window.bind('<Key>', self.pressed)
         self.spielfeld()
 
 
     def show_window(self):
         self.window.mainloop()
 
+    '''
     def pressed(self, event):
         self._notify("gui_pressed", "my event" )
         pass
-
+    '''
     def spielfeld(self):
 
         beige = '#F5F5DC'

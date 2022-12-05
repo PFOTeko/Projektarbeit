@@ -10,7 +10,6 @@ class Controller:
 
         #self.field = field.Field()
 
-
     def start_gui(self):
         self.gui.show_window()
 
