@@ -15,10 +15,14 @@ class Gui:
         self.window.mainloop()
 
     def spielfeld(self):
-        field = tk.Canvas(self.window, width=600, height=600, background="#F5F5DC")
+
+        beige = '#F5F5DC'
+        grey = '#D3D3D3'
+
+        field = tk.Canvas(self.window, width=600, height=600, background=beige)
         field.pack()
 
-        menu = tk.Canvas(self.window, width=600, height=200, background="#D3D3D3")
+        menu = tk.Canvas(self.window, width=600, height=200, background=grey)
         menu.pack()
 
         start_button = tk.Button(text="Start", width=15, height=2)
@@ -31,5 +35,8 @@ class Gui:
         menu_button.place(x=310, y=675)
 
     def snake(self):
-        body = tk.cavase.create_oval(50, 50, 100, 100, fill='#7FFF00')
+
+        green = '#7FFF00'
+
+        body = tk.cavase.create_oval(50, 50, 100, 100, fill=green)
         body.pack()
