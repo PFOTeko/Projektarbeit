@@ -50,7 +50,7 @@ Spielfeld -- Crashing
 Spielfeld -- Menu
 Futter <|-- Bonusfutter
 Controller <|-- Spielfeld
-Spielfeld <|-- Controller
+Controller --|> Spielfeld
 View <|--Controller
 View --|> Controller
 @enduml
