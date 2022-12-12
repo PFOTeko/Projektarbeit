@@ -6,15 +6,13 @@ class Gui:
 
     def __init__(self):
 
-        self.callback = c.Controller()
+        self.callback = c.Controller
         self.window = tk.Tk()
         self.window.title("Snake")
         self.window.geometry("600x800")
         self.window.resizable(width=False, height=False)
         self.window.bind('<Key>',  self.callback.pressed)
         self.spielfeld()
-
-    def show_window(self):
         self.window.mainloop()
 
     def spielfeld(self):

@@ -6,15 +6,7 @@ class Controller:
 
     def __init__(self):
         self.gui = gui.Gui()
-        self.gui.register_callback(self.gui_callbacks)
 
-        #self.field = field.Field()
-
-    def start_gui(self):
-        self.gui.show_window()
-
-    def gui_callbacks(self, event, data):
-        print("gui_callbacks: " + str(event))
 
     def model(self):
 
@@ -31,4 +23,6 @@ class Controller:
 
 if __name__ == "__main__":
     start = Controller()
-    start.start_gui()
+
+
+
