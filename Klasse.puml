@@ -1,11 +1,21 @@
 @startuml
 
+class Subject {
+    observers
+    attach(Observer)
+    detach(Observer)
+    notify()
+}
+
+class Observer {
+    update()
+}
+
 class View{
 
 }
 
 class Controller{
-callback()
 
 }
 
@@ -49,8 +59,8 @@ Spielfeld -- Bewegungen
 Spielfeld -- Crashing
 Spielfeld -- Menu
 Futter <|-- Bonusfutter
-Controller <|-- Spielfeld
-Controller --|> Spielfeld
-View <|--Controller
-View --|> Controller
+Subject <|-- Spielfeld
+Subject --> Observer
+Subject <|-- View
+Controller --|> Observer
 @enduml
