@@ -1,19 +1,25 @@
 import tkinter as tk
+from subject import Subject
 import controller as c
 
 
-class Gui:
+class Gui(Subject):
 
     def __init__(self):
 
-        self.callback = c.Controller
+        #self.callback = c.Controller
         self.window = tk.Tk()
         self.window.title("Snake")
         self.window.geometry("600x800")
         self.window.resizable(width=False, height=False)
-        self.window.bind('<Key>',  self.callback.pressed)
+        self.window.bind('<Key>',  self.keyboard_handler)
+        #self.window.bind('<Key>',  self.callback.pressed)
         self.spielfeld()
         self.window.mainloop()
+
+    def keyboard_handler(self):
+        self.notify("gui_pressed", "my event")
+        pass
 
     def spielfeld(self):
 

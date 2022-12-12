@@ -1,12 +1,15 @@
-from Game import gui
-from Game import field
+import gui
+import field
+from observer import Observer
 
 
-class Controller:
+class Controller(Observer):
 
-    def __init__(self):
+    def __init__(self,):
         self.gui = gui.Gui()
+        self.model = field()
 
+        self.view.attche(self)
 
     def model(self):
 
