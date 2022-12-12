@@ -1,5 +1,15 @@
 @startuml
 
+class View{
+
+}
+
+class Controller{
+callback()
+
+}
+
+
 class Schlange{
 Anzahl Körperteil
 }
@@ -39,4 +49,8 @@ Spielfeld -- Bewegungen
 Spielfeld -- Crashing
 Spielfeld -- Menu
 Futter <|-- Bonusfutter
+Controller <|-- Spielfeld
+Spielfeld <|-- Controller
+View <|--Controller
+View --|> Controller
 @enduml
