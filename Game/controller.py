@@ -5,7 +5,7 @@ from observer import Observer
 
 class Controller(Observer):
 
-    def __init__(self,):
+    def __init__(self):
         self.gui = gui.Gui()
         self.model = field()
 
