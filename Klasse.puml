@@ -19,7 +19,6 @@ class Controller{
 
 }
 
-
 class Schlange{
 Anzahl Körperteil
 }

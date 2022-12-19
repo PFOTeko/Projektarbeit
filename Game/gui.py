@@ -18,7 +18,7 @@ class Gui(Subject):
         self.window.mainloop()
 
     def keyboard_handler(self):
-        self.notify("gui_pressed", "my event")
+        self.notify()
         pass
 
     def spielfeld(self):
