@@ -1,15 +1,21 @@
-import gui
-import field
+from field import Field
+from gui import Gui
+
 from observer import Observer
 
 
 class Controller(Observer):
 
     def __init__(self):
-        self.gui = gui.Gui()
-        self.model = field()
+        self.gui = Gui()
+        self.model = Field(8,8,8,1)
 
-        self.view.attche(self)
+        self.gui.attach(self)
+
+        self.gui.run()
+
+    def update(self):
+        print("foo")
 
     def model(self):
 
@@ -17,7 +23,7 @@ class Controller(Observer):
 
     # todo: Observer-Pattern einbinden
 
-    def pressed(event):
+    def pressed(self, event):
         pressed = event.keysym
         keys = ['Up', 'Down', 'Right', 'Left']
 

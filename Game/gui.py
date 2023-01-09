@@ -1,7 +1,5 @@
 import tkinter as tk
 from subject import Subject
-import controller as c
-
 
 class Gui(Subject):
 
@@ -15,6 +13,8 @@ class Gui(Subject):
         self.window.bind('<Key>',  self.keyboard_handler)
         #self.window.bind('<Key>',  self.callback.pressed)
         self.spielfeld()
+
+    def run(self):
         self.window.mainloop()
 
     # todo: Schlange zeichnen
@@ -24,9 +24,8 @@ class Gui(Subject):
     # todo: Menu Button zeichnen
     # todo: Punkteanzeige
 
-    def keyboard_handler(self):
+    def keyboard_handler(self, event):
         self.notify()
-        pass
 
     def spielfeld(self):
 
