@@ -19,7 +19,6 @@ class Gui(Subject):
 
     def keyboard_handler(self, event):
         self.notify()
-        pass
 
     def spielfeld(self):
 
