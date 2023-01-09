@@ -1,7 +1,5 @@
 import tkinter as tk
 from subject import Subject
-import controller as c
-
 
 class Gui(Subject):
 
