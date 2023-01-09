@@ -13,6 +13,8 @@ class Gui(Subject):
         self.window.bind('<Key>',  self.keyboard_handler)
         #self.window.bind('<Key>',  self.callback.pressed)
         self.spielfeld()
+
+    def run(self):
         self.window.mainloop()
 
     def keyboard_handler(self):
