@@ -20,6 +20,8 @@ class Field:
 
     # todo: Skalierung des Food muss in die View'
 
+    def get_random_food_position(self):
+        free_pos = []
         if self.eaten is None or True:
             free_pos = []
             for x in range(self.width):
@@ -55,7 +57,7 @@ class Field:
     # todo: rename der Funktion
     def playing_field(self):
 
-        self.food()
+        self.get_random_food_position()
 
         if self.snake_position in self.food_position:
             self.eaten = True
