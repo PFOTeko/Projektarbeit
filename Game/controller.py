@@ -1,5 +1,6 @@
-import gui
-import field
+from field import Field
+from gui import Gui
+
 from observer import Observer
 
 
