@@ -17,7 +17,7 @@ class Gui(Subject):
     def run(self):
         self.window.mainloop()
 
-    def keyboard_handler(self):
+    def keyboard_handler(self, event):
         self.notify()
         pass
 
