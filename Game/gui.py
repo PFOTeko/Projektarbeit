@@ -12,7 +12,7 @@ class Gui(Subject):
         self.window.resizable(width=False, height=False)
         self.window.bind('<Key>',  self.keyboard_handler)
         #self.window.bind('<Key>',  self.callback.pressed)
-        self.spielfeld()
+        self.draw_background()
 
     def run(self):
         self.window.mainloop()
@@ -27,16 +27,19 @@ class Gui(Subject):
     def keyboard_handler(self, event):
         self.notify()
 
-    def spielfeld(self):
+    # todo: Funktion in Hintergrund umbenennen und Buttons separat in eine Funktion
+    def draw_background(self):
 
-        beige = '#F5F5DC'
-        grey = '#D3D3D3'
+        background_color = '#F5F5DC'  # beige
+        menu_color = '#D3D3D3'  # grey
 
-        field = tk.Canvas(self.window, width=600, height=600, background=beige)
+        field = tk.Canvas(self.window, width=600, height=600, background=background_color)
         field.pack()
 
-        menu = tk.Canvas(self.window, width=600, height=200, background=grey)
+        menu = tk.Canvas(self.window, width=600, height=200, background=menu_color)
         menu.pack()
+
+    def draw_buttons(self):
 
         start_button = tk.Button(text="Start", width=15, height=2)
         start_button.place(x=10, y=675)
@@ -46,10 +49,16 @@ class Gui(Subject):
 
         menu_button = tk.Button(text="Menu", width=15, height=2)
         menu_button.place(x=310, y=675)
+        menu_button.pack()
 
-    def snake(self):
+    def draw_snake(self):
 
-        green = '#7FFF00'
+        snake_color = '#7FFF00' # green
 
-        body = tk.cavase.create_oval(50, 50, 100, 100, fill=green)
+        body = tk.Canvas.create_oval(50, 50, 100, 100, fill=snake_color)
         body.pack()
+
+    # todo: Funktion Food zeichnen
+    def draw_food(self):
+        pass
+

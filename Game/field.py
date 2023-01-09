@@ -19,7 +19,6 @@ class Field:
         self.crash = None
 
     # todo: Skalierung des Food muss in die View'
-
     def get_random_food_position(self):
         free_pos = []
         if self.eaten is None or True:
@@ -35,7 +34,6 @@ class Field:
             self.food_position = random.choice(free_pos)
 
     # todo: Skalierung der Schlange muss in die View'
-
     def offset_snake(self):
 
         snake, self.crash = self.snake.move_snake(self.direction, self.eaten)

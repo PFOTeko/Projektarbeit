@@ -15,21 +15,22 @@ class Snake:
         dx, dy = self.moves[direction]
         new_head_position = x + dx, y + dy
 
-        # todo: Überprüfung auf Biss muss ins Spielfeld oder neue Methode in der Klasse-Snake
+        # Körper anpassen, wenn etwas gegessen wird.
+        if eaten:
+            self.snake_body.insert(0, new_head_position)
+        else:
+            self.snake_body.insert(0, new_head_position)
+            self.snake_body.pop()
 
+        #print(self.snake_body) # Ausgabe der Schlange
+
+        return self.snake_body
+
+    def check_self_crash(self):
+
+        # todo: Überprüfung auf Biss muss in eine neue Funktion
         # Prüfung ob eigener Körper gebissen wurde.
         if new_head_position in self.snake_body:
             self.bitten = False
         else:
             self.bitten = True
-
-            # Körper anpassen, wenn etwas gegessen wird.
-            if eaten:
-                self.snake_body.insert(0, new_head_position)
-            else:
-                self.snake_body.insert(0, new_head_position)
-                self.snake_body.pop()
-
-        #print(self.snake_body) # Ausgabe der Schlange
-
-        return self.snake_body, self.bitten
