@@ -18,6 +18,8 @@ class Snake:
 
         # Prüfung ob eigener Körper gebissen wurde.
 
+        # todo: Überprüfung auf Biss muss ins Spielfeld oder neue Methode in der Klasse-Snake
+
         if new_head_position in self.snake_body:
             self.bitten = False
         else:

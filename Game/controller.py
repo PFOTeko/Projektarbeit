@@ -15,6 +15,8 @@ class Controller(Observer):
 
         print('Hallo Welt')
 
+    # todo: Observer-Pattern einbinden
+
     def pressed(event):
         pressed = event.keysym
         keys = ['Up', 'Down', 'Right', 'Left']

@@ -17,6 +17,13 @@ class Gui(Subject):
         self.spielfeld()
         self.window.mainloop()
 
+    # todo: Schlange zeichnen
+    # todo: Food zeichnen
+    # todo: Skalierung der Schlange und Food
+    # todo: Observer-Pattern einbinden
+    # todo: Menu Button zeichnen
+    # todo: Punkteanzeige
+
     def keyboard_handler(self):
         self.notify()
         pass

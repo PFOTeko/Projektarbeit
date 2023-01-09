@@ -18,7 +18,7 @@ class Field:
         self.food_position = []
         self.crash = None
 
-    def food(self):
+    # todo: Skalierung des Food muss in die View'
 
         if self.eaten is None or True:
             free_pos = []
@@ -32,7 +32,7 @@ class Field:
                         free_pos.append((x, y))
             self.food_position = random.choice(free_pos)
 
-        return self.food_position
+    # todo: Skalierung der Schlange muss in die View'
 
     def offset_snake(self):
 
@@ -51,6 +51,8 @@ class Field:
 
         self.snake_position = offset_snake
 
+    # todo: Skalierung (offset_snake) der Schlange muss in die View'
+    # todo: rename der Funktion
     def playing_field(self):
 
         self.food()
