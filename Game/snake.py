@@ -11,22 +11,19 @@ class Snake:
     def move_snake(self, direction, eaten):
 
         # gib neue Kopfposition zurück direction: 'up', 'down',...
-
         x, y = self.snake_body[0]
         dx, dy = self.moves[direction]
         new_head_position = x + dx, y + dy
 
-        # Prüfung ob eigener Körper gebissen wurde.
-
         # todo: Überprüfung auf Biss muss ins Spielfeld oder neue Methode in der Klasse-Snake
 
+        # Prüfung ob eigener Körper gebissen wurde.
         if new_head_position in self.snake_body:
             self.bitten = False
         else:
             self.bitten = True
 
             # Körper anpassen, wenn etwas gegessen wird.
-
             if eaten:
                 self.snake_body.insert(0, new_head_position)
             else:
