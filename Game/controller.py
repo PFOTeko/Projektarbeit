@@ -12,7 +12,10 @@ class Controller(Observer):
 
         self.gui.attach(self)
 
-        self.view.attche(self)
+        self.gui.run()
+
+    def update(self):
+        print("foo")
 
     def model(self):
 
