@@ -7,13 +7,11 @@ class Field:
 
         self.length = length
         self.width = width
-
         self.direction = direction
         self.snake_start = [((self.width / 2), (self.length / 2))]
-        self.snake_position = []
         self.snake = Snake()
-
-        self.food_position = []
+        self.snake_position = []
+        self.food = []
 
     def get_random_food_position(self):
 
@@ -24,15 +22,22 @@ class Field:
                     free_pos.append((x, y))
         return random.choice(free_pos)
 
+    def palce_objects(self):
+
+        self.food = self.get_random_food_position()
+        self.snake_position = self.snake.move_snake(self.direction)
+
+        print(self.food, self.snake_position)
+
+        return self.food, self.snake_position
+
     def check_food_eaten(self):
 
-        food = self.get_random_food_position()
-
-        if self.snake_position in food:
+        if self.snake in self.food:
             eaten = True
         else:
             eaten = False
 
-        print(eaten, food)
-
         return eaten
+
+

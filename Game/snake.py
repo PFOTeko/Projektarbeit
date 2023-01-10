@@ -8,12 +8,19 @@ class Snake:
         self.movement = None
         self.bitten = None
 
-    def move_snake(self, direction, eaten):
+    def move_snake(self, direction):
 
         # gib neue Kopfposition zurück direction: 'up', 'down',...
         x, y = self.snake_body[0]
         dx, dy = self.moves[direction]
         new_head_position = x + dx, y + dy
+
+        self.snake_body.insert(0, new_head_position)
+        self.snake_body.pop()
+
+        return self.snake_body
+
+    def grow_snake(self, eaten):
 
         # Körper anpassen, wenn etwas gegessen wird.
         if eaten:
@@ -22,9 +29,7 @@ class Snake:
             self.snake_body.insert(0, new_head_position)
             self.snake_body.pop()
 
-        #print(self.snake_body) # Ausgabe der Schlange
 
-        return self.snake_body
 
     def check_self_crash(self):
 
@@ -34,3 +39,5 @@ class Snake:
             self.bitten = False
         else:
             self.bitten = True
+
+        return self.bitten

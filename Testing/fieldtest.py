@@ -14,13 +14,24 @@ class TestField(unittest.TestCase):
             for y in range(length):
                 expected_result.append((x, y))
 
-        field = Field(width, length, 'Left')
+        # Direction left and up the coordinate is out of the field and the test fails
+        field = Field(width, length, 'Down')
 
         # Act
-        actual_result = field.check_food_eaten()
+
+        food, snake = field.palce_objects()
+        actual_result_food = food
+
+        actual_result_snake = snake
 
         # Assert
-        self.assertIn(actual_result, expected_result)
+
+        self.assertIn(actual_result_food, expected_result)
+
+        for xy in actual_result_snake:
+            pos = xy
+            self.assertIn(pos, expected_result)
+            print(pos)
 
 
 if __name__ == '__main__':
