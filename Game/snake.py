@@ -22,13 +22,13 @@ class Snake:
 
         self.snake_body.append(self.tail)
 
-        return self.snake_body.append
+        return self.snake_body
 
     def check_self_crash(self):
 
         if self.snake_body[0] in self.snake_body:
-            bitten = True
+            bite = True
         else:
-            bitten = False
+            bite = False
 
-        return bitten
+        return bite

@@ -6,6 +6,7 @@ class TestField(unittest.TestCase):
 
     def test_field(self):
 
+        # Creating a test playfield
         width = 10
         length = 10
         expected_result = []
