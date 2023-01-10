@@ -31,7 +31,8 @@ class TestField(unittest.TestCase):
         for xy in actual_result_snake:
             pos = xy
             self.assertIn(pos, expected_result)
-            print(pos)
+
+        print(actual_result_food, actual_result_snake)
 
 
 if __name__ == '__main__':

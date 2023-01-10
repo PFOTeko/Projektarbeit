@@ -5,39 +5,30 @@ class Snake:
         self.snake_body = [(0, 0), (1, 0), (2, 0)]
         self.direction = None
         self.moves = {'Up': (0, -1), 'Down': (0, 1), 'Left': (-1, 0), 'Right': (1, 0)}
-        self.movement = None
-        self.bitten = None
+        self.tail = []
 
     def move_snake(self, direction):
 
-        # gib neue Kopfposition zurück direction: 'up', 'down',...
         x, y = self.snake_body[0]
         dx, dy = self.moves[direction]
         new_head_position = x + dx, y + dy
 
         self.snake_body.insert(0, new_head_position)
-        self.snake_body.pop()
+        self.tail = self.snake_body.pop()
 
         return self.snake_body
 
-    def grow_snake(self, eaten):
+    def grow_snake(self):
 
-        # Körper anpassen, wenn etwas gegessen wird.
-        if eaten:
-            self.snake_body.insert(0, new_head_position)
-        else:
-            self.snake_body.insert(0, new_head_position)
-            self.snake_body.pop()
+        self.snake_body.append(self.tail)
 
-
+        return self.snake_body.append
 
     def check_self_crash(self):
 
-        # todo: Überprüfung auf Biss muss in eine neue Funktion
-        # Prüfung ob eigener Körper gebissen wurde.
-        if new_head_position in self.snake_body:
-            self.bitten = False
+        if self.snake_body[0] in self.snake_body:
+            bitten = True
         else:
-            self.bitten = True
+            bitten = False
 
-        return self.bitten
+        return bitten

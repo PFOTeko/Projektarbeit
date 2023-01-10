@@ -27,13 +27,11 @@ class Field:
         self.food = self.get_random_food_position()
         self.snake_position = self.snake.move_snake(self.direction)
 
-        print(self.food, self.snake_position)
-
         return self.food, self.snake_position
 
     def check_food_eaten(self):
 
-        if self.snake in self.food:
+        if self.snake_position in self.food:
             eaten = True
         else:
             eaten = False
