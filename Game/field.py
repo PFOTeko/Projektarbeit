@@ -1,4 +1,4 @@
-from snake import Snake
+from Game.snake import Snake
 import random
 
 
@@ -20,20 +20,17 @@ class Field:
 
     # todo: Skalierung des Food muss in die View'
     def get_random_food_position(self):
+
         free_pos = []
-        if self.eaten is None or True:
-            free_pos = []
-            for x in range(self.width):
-                n = x // self.size
-                x = n * self.size
-                for y in range(self.length):
-                    i = y // self.size
-                    y = i * self.size
-                    if (x, y) not in self.snake_position:
-                        free_pos.append((x, y))
-            self.food_position = random.choice(free_pos)
+        for x in range(self.width):
+            for y in range(self.length):
+                if (x, y) not in self.snake_position:
+                    free_pos.append((x, y))
+        return random.choice(free_pos)
 
     # todo: Skalierung der Schlange muss in die View'
+
+    '''
     def offset_snake(self):
 
         snake, self.crash = self.snake.move_snake(self.direction, self.eaten)
@@ -53,17 +50,19 @@ class Field:
 
     # todo: Skalierung (offset_snake) der Schlange muss in die View'
     # todo: rename der Funktion
+    
+    '''
+
     def playing_field(self):
 
         self.get_random_food_position()
 
         if self.snake_position in self.food_position:
             self.eaten = True
-            self.offset_snake()
+
         else:
             self.eaten = False
-            self.offset_snake()
 
-        print(self.food_position, self.snake_position, self.crash)
+        print(self.get_random_food_position(), self.snake_position)
 
         return
