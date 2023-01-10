@@ -53,7 +53,7 @@ class Field:
 
     # todo: Skalierung (offset_snake) der Schlange muss in die View'
     # todo: rename der Funktion
-    def playing_field(self):
+    def set_playing_field(self):
 
         self.get_random_food_position()
 
