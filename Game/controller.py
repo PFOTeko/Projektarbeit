@@ -8,7 +8,7 @@ class Controller(Observer):
 
     def __init__(self):
         self.gui = Gui()
-        self.model = Field(8,8,8,1)
+        self.model = Field(8, 8, 'Left')
 
         self.gui.attach(self)
 
@@ -28,8 +28,7 @@ class Controller(Observer):
         keys = ['Up', 'Down', 'Right', 'Left']
 
         if pressed in keys:
-            Controller.model(pressed)
-            print(event.keysym)
+            print('Hallo Welt')
 
 
 if __name__ == "__main__":
