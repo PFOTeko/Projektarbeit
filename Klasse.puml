@@ -11,7 +11,7 @@ class Observer {
     update()
 }
 
-class View{
+class View #yellow{
 
 
 Tastatur abfragen()
@@ -20,23 +20,23 @@ Spiefeld darstellen()
 
 }
 
-class Controller{
+class Controller #lightgreen{
 
 }
 
-class Schlange{
+class Schlange #lightblue{
 Anzahl Körperteil
 Crash
 }
 
-class Futter{
+class Futter #lightblue{
 Typ
 }
 
-class Bonusfutter{
+class Bonusfutter #lightblue{
 }
 
-class Spielfeld{
+class Spielfeld #lightblue{
 rahmen
 new game()
 pause()
@@ -54,6 +54,6 @@ Subject <|-- Spielfeld
 Subject --> Observer
 Subject <|-- View
 Controller --|> Observer
-Controller --|> View
-Controller --|> Spielfeld
+Controller --> View
+Controller --> Spielfeld
 @enduml
