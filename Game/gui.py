@@ -13,6 +13,7 @@ class Gui(Subject):
         self.window.bind('<Key>',  self.keyboard_handler)
         #self.window.bind('<Key>',  self.callback.pressed)
         self.draw_background()
+        self.draw_buttons()
 
     def run(self):
         self.window.mainloop()
@@ -49,7 +50,7 @@ class Gui(Subject):
 
         menu_button = tk.Button(text="Menu", width=15, height=2)
         menu_button.place(x=310, y=675)
-        menu_button.pack()
+        #menu_button.pack()
 
     def draw_snake(self):
 
