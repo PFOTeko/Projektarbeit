@@ -1,6 +1,7 @@
 import tkinter as tk
 from subject import Subject
 
+
 class Gui(Subject):
 
     def __init__(self):
@@ -14,7 +15,11 @@ class Gui(Subject):
         self.draw_buttons()
         self.draw_snake()
         self.draw_food()
-        self.field
+
+        self.field = None
+        self.fake_snake = None
+        self.playing_field_width = 600
+        self.playing_field_height = 600
 
     def run(self):
         self.window.mainloop()
@@ -57,12 +62,14 @@ class Gui(Subject):
     def draw_snake(self):
 
         size = 20
-        x = 50
-        y = 50
-
         snake_color = '#7FFF00'  # green
 
-        body_part = self.field.create_oval(x, y, (x + size), (y + size), fill=snake_color)
+        self.fake_snake = [(0, 0), (1, 0), (2, 0)]  # Nur für Testzwecke
+
+        for body_part in self.fake_snake:
+            x, y = body_part
+            self.field.create_oval(x, y, (x + size), (y + size), fill=snake_color)
+
         self.field.pack()
 
     # todo: Funktion Food zeichnen
