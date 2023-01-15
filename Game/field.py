@@ -22,7 +22,7 @@ class Field:
                     free_pos.append((x, y))
         return random.choice(free_pos)
 
-    def palce_objects(self):
+    def place_objects(self):
 
         self.food = self.get_random_food_position()
         self.snake_position = self.snake.move_snake(self.direction)
@@ -37,5 +37,3 @@ class Field:
             eaten = False
 
         return eaten
-
-
