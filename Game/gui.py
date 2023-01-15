@@ -6,6 +6,10 @@ class Gui(Subject):
 
     def __init__(self):
 
+        self.fake_snake = [(0, 0), (1, 0), (2, 0)]  # Nur für Testzwecke
+        self.fake_food = (5, 6)  # Nur für Testzwecke
+        self.field = None
+
         self.window = tk.Tk()
         self.window.title("Snake")
         self.window.geometry("600x670")
@@ -15,11 +19,6 @@ class Gui(Subject):
         self.draw_buttons()
         self.draw_snake()
         self.draw_food()
-
-        self.field = None
-        self.fake_snake = None
-        self.playing_field_width = 600
-        self.playing_field_height = 600
 
     def run(self):
         self.window.mainloop()
@@ -63,12 +62,14 @@ class Gui(Subject):
 
         size = 20
         snake_color = '#7FFF00'  # green
-
-        self.fake_snake = [(0, 0), (1, 0), (2, 0)]  # Nur für Testzwecke
+        snake_position = (300, 300)
 
         for body_part in self.fake_snake:
             x, y = body_part
-            self.field.create_oval(x, y, (x + size), (y + size), fill=snake_color)
+            x0, y0 = snake_position
+            x1, y1 = (x0 - (size/2) + (x * size)), (y0 - (size/2) + (y * size))
+            x2, y2 = (x0 + (size/2) + (x * size)), (y0 + (size/2) + (y * size))
+            self.field.create_oval(x1, y1, x2, y2, fill=snake_color)
 
         self.field.pack()
 
