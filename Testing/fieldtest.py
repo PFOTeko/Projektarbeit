@@ -20,7 +20,7 @@ class TestField(unittest.TestCase):
 
         # Act
 
-        food, snake = field.palce_objects()
+        food, snake = field.place_objects()
         actual_result_food = food
 
         actual_result_snake = snake
