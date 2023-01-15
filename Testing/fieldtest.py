@@ -20,7 +20,7 @@ class TestField(unittest.TestCase):
 
         # Act
 
-        food, snake = field.palce_objects()
+        food, snake = field.place_objects()
         actual_result_food = food
 
         actual_result_snake = snake
@@ -34,6 +34,15 @@ class TestField(unittest.TestCase):
             self.assertIn(pos, expected_result)
 
         print(actual_result_food, actual_result_snake)
+
+    def test_check_food_eaten(self):
+        Field.snake_position = [1, 2]
+        Field.food = [1, 2]
+        self.assertTrue(Field.check_food_eaten)
+
+        '''Field.snake_position = [1, 2]
+        Field.food = [3, 4]
+        self.assertFalse(Field.check_food_eaten)'''
 
 
 if __name__ == '__main__':
