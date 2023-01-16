@@ -12,48 +12,41 @@ class Observer {
 }
 
 class View #yellow{
-
-
-Tastatur abfragen()
-Menu()
-Spiefeld darstellen()
-
+keyboard_handler()
+draw_background()
+draw_buttons()
+draw_snake()
+draw_food()
 }
 
 class Controller #lightgreen{
 
 }
 
-class Schlange #lightblue{
+class Snake #lightblue{
 Anzahl Körperteil
 Crash
+move_snake()
+grow_snake()
+check_self_crash()
 }
 
-class Futter #lightblue{
-Typ
-}
-
-class Bonusfutter #lightblue{
-}
-
-class Spielfeld #lightblue{
-rahmen
+class Field #lightblue{
 new game()
 pause()
 punktestand
 game over anzeige
-position
+snake position
+food position
 speed
-rangliste
+food()
 }
 
-Spielfeld -- Schlange
-Spielfeld -- Futter
-Futter <|-- Bonusfutter
-Subject <|-- Spielfeld
+Field --> Snake
+Subject <|-- Field
 Subject --> Observer
 Subject <|-- View
 Controller --|> Observer
 Controller --> View
-Controller --> Spielfeld
+Controller --> Field
 @enduml
