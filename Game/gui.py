@@ -21,7 +21,7 @@ class Gui(Subject):
         self.window.title("Snake")
         self.window.geometry(screen_resolution)
         self.window.resizable(width=False, height=False)
-        self.window.bind('<Key>', self.event_handler)
+        self.window.bind('<Key>', self.keyboard_handler)
         self.draw_background()
         self.draw_buttons()
         self.draw_snake()
@@ -33,8 +33,20 @@ class Gui(Subject):
     # todo: Observer-Pattern einbinden
     # todo: Punkteanzeige
 
-    def event_handler(self, event):
+    def keyboard_handler(self, event):
         self.notify(event)
+
+    def start_button_handler(self):
+        self.notify('start')
+
+    def pause_button_handler(self):
+        self.notify('pause')
+
+    def speed_up_button_handler(self):
+        self.notify('speed_up')
+
+    def speed_down_button_handler(self):
+        self.notify('speed_down')
 
     def draw_background(self):
 
@@ -49,16 +61,16 @@ class Gui(Subject):
 
     def draw_buttons(self):
 
-        start_button = tk.Button(self.window, command=self.event_handler(1), text="Start", width=12, height=2)
+        start_button = tk.Button(self.window, command=self.start_button_handler, text="Start", width=12, height=2)
         start_button.place(x=60, y=620)
 
-        pause_button = tk.Button(self.window, text="Pause", width=12, height=2)
+        pause_button = tk.Button(self.window, command=self.pause_button_handler, text="Pause", width=12, height=2)
         pause_button.place(x=190, y=620)
 
-        speed_up_button = tk.Button(self.window, text="Speed Up", width=12, height=2)
+        speed_up_button = tk.Button(self.window, command=self.speed_up_button_handler, text="Speed Up", width=12, height=2)
         speed_up_button.place(x=320, y=620)
 
-        speed_down_button = tk.Button(self.window, text="Speed Down", width=12, height=2)
+        speed_down_button = tk.Button(self.window, command=self.speed_down_button_handler, text="Speed Down", width=12, height=2)
         speed_down_button.place(x=450, y=620)
 
     def draw_snake(self):

@@ -14,13 +14,16 @@ class Controller(Observer):
         self.gui.run()
 
     def update(self, event):
-        pressed = event.keysym
+
+        button = ['start', 'pause', 'speed_up', 'speed_down']
         keys = ['Up', 'Down', 'Right', 'Left']
 
-        print(pressed)
-
-        if pressed in keys:
-            print(pressed)
+        if event in button:
+            print(event)
+        else:
+            pressed = event.keysym
+            if pressed in keys:
+                print(pressed)
 
 
 if __name__ == "__main__":
