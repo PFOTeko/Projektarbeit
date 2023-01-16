@@ -21,7 +21,7 @@ class Gui(Subject):
         self.window.title("Snake")
         self.window.geometry(screen_resolution)
         self.window.resizable(width=False, height=False)
-        self.window.bind('<Key>',  self.keyboard_handler)
+        self.window.bind('<Key>', self.event_handler)
         self.draw_background()
         self.draw_buttons()
         self.draw_snake()
@@ -33,7 +33,7 @@ class Gui(Subject):
     # todo: Observer-Pattern einbinden
     # todo: Punkteanzeige
 
-    def keyboard_handler(self, event):
+    def event_handler(self, event):
         self.notify(event)
 
     def draw_background(self):
@@ -49,7 +49,7 @@ class Gui(Subject):
 
     def draw_buttons(self):
 
-        start_button = tk.Button(self.window, text="Start", width=12, height=2)
+        start_button = tk.Button(self.window, command=self.event_handler(1), text="Start", width=12, height=2)
         start_button.place(x=60, y=620)
 
         pause_button = tk.Button(self.window, text="Pause", width=12, height=2)

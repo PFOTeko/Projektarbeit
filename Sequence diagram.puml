@@ -1,0 +1,15 @@
+@startuml
+actor Bob
+
+Controller -> Gui: attach()
+Bob -> Gui: Push Button
+Gui -> Gui: notify()
+Gui -> Controller: update()
+Field <- Controller: move_snake()
+Field -> Snake: move_snake()
+Snake --> Field
+Field -> Field: notify()
+Field-> Controller: update()
+Controller -> Gui: draw_snake();
+
+@enduml

@@ -17,12 +17,10 @@ class Controller(Observer):
         pressed = event.keysym
         keys = ['Up', 'Down', 'Right', 'Left']
 
+        print(pressed)
+
         if pressed in keys:
-            print('Hallo Welt')
-
-        print("foo")
-
-    # todo: Observer-Pattern einbinden
+            print(pressed)
 
 
 if __name__ == "__main__":
