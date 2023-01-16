@@ -13,17 +13,16 @@ class Controller(Observer):
         self.gui.attach(self)
         self.gui.run()
 
-    def update(self):
-        print("foo")
-
-    # todo: Observer-Pattern einbinden
-
-    def pressed(self, event):
+    def update(self, event):
         pressed = event.keysym
         keys = ['Up', 'Down', 'Right', 'Left']
 
         if pressed in keys:
             print('Hallo Welt')
+
+        print("foo")
+
+    # todo: Observer-Pattern einbinden
 
 
 if __name__ == "__main__":
