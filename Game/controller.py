@@ -11,15 +11,10 @@ class Controller(Observer):
         self.model = Field(8, 8, 'Left')
 
         self.gui.attach(self)
-
         self.gui.run()
 
     def update(self):
         print("foo")
-
-    def model(self):
-
-        print('Hallo Welt')
 
     # todo: Observer-Pattern einbinden
 

@@ -1,29 +1,36 @@
 import tkinter as tk
 from subject import Subject
 
+
 class Gui(Subject):
 
     def __init__(self):
 
+        self.fake_snake = [(0, 0), (1, 0), (2, 0)]  # Nur für Testzwecke
+        self.snake_position = (300, 300)  # Nur für Testzwecke
+        self.fake_food = (100, 300)  # Nur für Testzwecke
+
+        self.field = None
+        self.width = 600
+        self.height = 600
+        self.menu_height = 70
+        self.object_size = 20
+        screen_resolution = str(self.width) + 'x' + str(self.height + self.menu_height)
+
         self.window = tk.Tk()
         self.window.title("Snake")
-        self.window.geometry("600x670")
+        self.window.geometry(screen_resolution)
         self.window.resizable(width=False, height=False)
         self.window.bind('<Key>',  self.keyboard_handler)
         self.draw_background()
         self.draw_buttons()
         self.draw_snake()
         self.draw_food()
-        self.field
 
     def run(self):
         self.window.mainloop()
 
-    # todo: Schlange zeichnen
-    # todo: Food zeichnen
-    # todo: Skalierung der Schlange und Food
     # todo: Observer-Pattern einbinden
-    # todo: Menu Button zeichnen
     # todo: Punkteanzeige
 
     def keyboard_handler(self, event):
@@ -34,10 +41,10 @@ class Gui(Subject):
         background_color = '#F5F5DC'  # beige
         menu_color = '#D3D3D3'  # grey
 
-        self.field = tk.Canvas(self.window, width=600, height=600, background=background_color)
+        self.field = tk.Canvas(self.window, width=self.width, height=self.height, background=background_color)
         self.field.pack()
 
-        menu = tk.Canvas(self.window, width=600, height=70, background=menu_color)
+        menu = tk.Canvas(self.window, width=self.width, height=self.menu_height, background=menu_color)
         menu.pack()
 
     def draw_buttons(self):
@@ -56,49 +63,28 @@ class Gui(Subject):
 
     def draw_snake(self):
 
-        size = 20
-        x = 50
-        y = 50
-
         snake_color = '#7FFF00'  # green
 
-        body_part = self.field.create_oval(x, y, (x + size), (y + size), fill=snake_color)
+        for body_part in self.fake_snake:
+            x, y = body_part
+            x0, y0 = self.snake_position
+
+            x1, y1 = (x0 - (self.object_size / 2) + (x * self.object_size)),\
+                     (y0 - (self.object_size / 2) + (y * self.object_size))
+
+            x2, y2 = (x0 + (self.object_size / 2) + (x * self.object_size)),\
+                     (y0 + (self.object_size / 2) + (y * self.object_size))
+
+            self.field.create_oval(x1, y1, x2, y2, fill=snake_color)
+
         self.field.pack()
 
-    # todo: Funktion Food zeichnen
     def draw_food(self):
 
-        size = 20
-        x = 100
-        y = 100
+        x, y = self.fake_food
 
         food_color = '#FF0000'  # red
 
-        food = self.field.create_oval(x, y, (x + size), (y + size), fill=food_color)
+        self.field.create_oval((x - (self.object_size / 2)), (y - (self.object_size / 2)), (x + (self.object_size / 2)),
+                               (y + (self.object_size / 2)), fill=food_color)
         self.field.pack()
-
-
-    # todo: Skalierung der Schlange muss in die View'
-
-    '''
-    def offset_snake(self):
-
-        snake, self.crash = self.snake.move_snake(self.direction, self.eaten)
-        offset_x, offset_y = self.snake_start[0]
-        offset_snake = []
-
-        for bodyPart in snake:
-            x, y = bodyPart
-
-            dx = (self.size * x) + offset_x
-            dy = (self.size * y) + offset_y
-            new_position = dx, dy
-
-            offset_snake.append(new_position)
-
-        self.snake_position = offset_snake
-
-    # todo: Skalierung (offset_snake) der Schlange muss in die View'
-    # todo: rename der Funktion
-
-    '''

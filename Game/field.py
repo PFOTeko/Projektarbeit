@@ -3,12 +3,12 @@ import random
 
 
 class Field:
-    def __init__(self, width, length, direction):
+    def __init__(self, width, height, direction):
 
-        self.length = length
-        self.width = width
+        self.height_field = height
+        self.width_field = width
         self.direction = direction
-        self.snake_start = [((self.width / 2), (self.length / 2))]
+        self.snake_start = [((self.width_field / 2), (self.height_field / 2))]
         self.snake = Snake()
         self.snake_position = []
         self.food = []
@@ -16,9 +16,9 @@ class Field:
     def get_random_food_position(self):
 
         free_pos = []
-        for x in range(self.width):
-            for y in range(self.length):
-                if (x, y) not in self.snake_position:
+        for x in range(self.width_field):
+            for y in range(self.height_field):
+                if (x, y) not in self.snake:
                     free_pos.append((x, y))
         return random.choice(free_pos)
 
