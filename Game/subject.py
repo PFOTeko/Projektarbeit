@@ -7,6 +7,6 @@ class Subject:
     def detach(self, observer):
         pass
 
-    def notify(self):
+    def notify(self, event):
         for observer in self.observers:
-            observer.update()
+            observer.update(event)

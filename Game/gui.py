@@ -34,7 +34,7 @@ class Gui(Subject):
     # todo: Punkteanzeige
 
     def keyboard_handler(self, event):
-        self.notify()
+        self.notify(event)
 
     def draw_background(self):
 

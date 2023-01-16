@@ -13,7 +13,6 @@ class Observer {
 
 class View{
 
-
 Tastatur abfragen()
 Menu()
 Spiefeld darstellen()
