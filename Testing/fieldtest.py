@@ -4,23 +4,35 @@ from Game.field import Field
 
 class TestField(unittest.TestCase):
 
-    def test_field(self):
+    def creat_field(self):
 
-        # Creating a test playfield
         width = 10
         length = 10
+
+        # Creating a test playfield
+
         expected_result = []
 
         for x in range(width):
             for y in range(length):
                 expected_result.append((x, y))
 
-        # Direction left and up the coordinate is out of the field and the test fails
-        field = Field(width, length, 'Down')
+        return expected_result
+
+    def test_food_and_snake(self):
+
+        width = 10
+        length = 10
+
+        expected_result = self.creat_field()
+        field = Field(width, length)
 
         # Act
-
-        food, snake = field.place_objects()
+        # Direction left and up the coordinate is out of the field and the test fails
+        snake = field.get_snake('Right')
+        #print(snake)
+        food = field.get_random_food_position()
+        #print(food)
         actual_result_food = food
 
         actual_result_snake = snake
@@ -33,7 +45,25 @@ class TestField(unittest.TestCase):
             pos = xy
             self.assertIn(pos, expected_result)
 
-        print(actual_result_food, actual_result_snake)
+    def test_build_game(self):
+
+        width = 10
+        length = 10
+
+        expected_result = self.creat_field()
+        field = Field(width, length)
+
+        game = field.build_game('Right')
+
+        actual_result_game_snake, actual_result_game_food = game
+
+        # Assert
+
+        for xy in actual_result_game_snake:
+            pos = xy
+            self.assertIn(pos, expected_result)
+
+        self.assertIn(actual_result_game_food, expected_result)
 
 
 if __name__ == '__main__':

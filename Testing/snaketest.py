@@ -18,7 +18,7 @@ class TestSnake(unittest.TestCase):
         # Assert
         self.assertEqual(actual_result_move, snake_body[direction])
 
-        #print(actual_result_move)
+        print(actual_result_move)
 
     def test_snake_grow(self):
 
@@ -31,7 +31,7 @@ class TestSnake(unittest.TestCase):
         # Assert
         self.assertEqual(actual_result_grow, [(0, 1), (0, 0), (1, 0), (2, 0)])
 
-        #print(actual_result_grow)
+        print(actual_result_grow)
 
 
 if __name__ == '__main__':

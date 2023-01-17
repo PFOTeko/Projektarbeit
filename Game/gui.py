@@ -4,17 +4,17 @@ from subject import Subject
 
 class Gui(Subject):
 
-    def __init__(self):
+    def __init__(self, width, height):
 
-        self.fake_snake = [(0, 0), (1, 0), (2, 0)]  # Nur für Testzwecke
-        self.snake_position = (300, 300)  # Nur für Testzwecke
+        self.snake = []
+        self.snake_start_position = (300, 300)  # Nur für Testzwecke
         self.fake_food = (100, 300)  # Nur für Testzwecke
 
         self.field = None
-        self.width = 600
-        self.height = 600
+        self.width = width
+        self.height = height
         self.menu_height = 70
-        self.object_size = 20
+        self.object_size = 15
         screen_resolution = str(self.width) + 'x' + str(self.height + self.menu_height)
 
         self.window = tk.Tk()
@@ -24,14 +24,13 @@ class Gui(Subject):
         self.window.bind('<Key>', self.keyboard_handler)
         self.draw_background()
         self.draw_buttons()
-        self.draw_snake()
+        self.draw_snake(self.snake)
         self.draw_food()
 
     def run(self):
         self.window.mainloop()
 
-    # todo: Observer-Pattern einbinden
-    # todo: Punkteanzeige
+       # todo: Punkteanzeige
 
     def keyboard_handler(self, event):
         self.notify(event)
@@ -73,13 +72,13 @@ class Gui(Subject):
         speed_down_button = tk.Button(self.window, command=self.speed_down_button_handler, text="Speed Down", width=12, height=2)
         speed_down_button.place(x=450, y=620)
 
-    def draw_snake(self):
+    def draw_snake(self, snake):
 
         snake_color = '#7FFF00'  # green
 
-        for body_part in self.fake_snake:
+        for body_part in snake:
             x, y = body_part
-            x0, y0 = self.snake_position
+            x0, y0 = self.snake_start_position
 
             x1, y1 = (x0 - (self.object_size / 2) + (x * self.object_size)),\
                      (y0 - (self.object_size / 2) + (y * self.object_size))

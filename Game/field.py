@@ -3,39 +3,68 @@ import random
 
 
 class Field:
-    def __init__(self, width, height, direction):
+    def __init__(self, width, height):
 
         self.height_field = height
         self.width_field = width
-        self.direction = direction
         self.snake_start = [((self.width_field / 2), (self.height_field / 2))]
         self.snake = Snake()
         self.snake_position = []
         self.food = []
+        self.game_over = False
+
+    def get_snake(self, direction):
+
+        self.snake_position = self.snake.move_snake(direction)
+
+        return self.snake_position
 
     def get_random_food_position(self):
 
         free_pos = []
         for x in range(self.width_field):
             for y in range(self.height_field):
-                if (x, y) not in self.snake:
+                if (x, y) not in self.snake_position:
                     free_pos.append((x, y))
+
         return random.choice(free_pos)
-
-    def place_objects(self):
-
-        self.food = self.get_random_food_position()
-        self.snake_position = self.snake.move_snake(self.direction)
-
-        return self.food, self.snake_position
 
     def check_food_eaten(self):
 
-        if self.snake_position in self.food:
+        if self.food in self.snake_position:
             eaten = True
         else:
             eaten = False
 
         return eaten
+
+    def build_game(self, direction):
+
+        snake = self.get_snake(direction)
+
+        if self.food is None or len(self.food) == 0:
+            self.food = self.get_random_food_position()
+
+        eaten = self.check_food_eaten()
+
+        if eaten is True:
+            self.food = self.get_random_food_position()
+            self.snake.grow_snake()
+
+        crash = self.snake.check_self_crash()
+
+        if crash is True:
+            self.game_over = True
+
+            #print(snake, self.food)
+
+        return snake, self.food
+
+
+
+
+
+
+
 
 
