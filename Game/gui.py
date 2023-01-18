@@ -6,9 +6,7 @@ class Gui(Subject):
 
     def __init__(self, width, height):
 
-        self.snake = []
         self.snake_start_position = (300, 300)  # Nur für Testzwecke
-        self.fake_food = (100, 300)  # Nur für Testzwecke
 
         self.field = None
         self.width = width
@@ -24,8 +22,8 @@ class Gui(Subject):
         self.window.bind('<Key>', self.keyboard_handler)
         self.draw_background()
         self.draw_buttons()
-        self.draw_snake(self.snake)
-        self.draw_food()
+        self.draw_snake([])
+        self.draw_food([0, 0])
 
     def run(self):
         self.window.mainloop()
@@ -90,12 +88,16 @@ class Gui(Subject):
 
         self.field.pack()
 
-    def draw_food(self):
+    def draw_food(self, food):
 
-        x, y = self.fake_food
+        x, y = food
 
         food_color = '#FF0000'  # red
-
-        self.field.create_oval((x - (self.object_size / 2)), (y - (self.object_size / 2)), (x + (self.object_size / 2)),
-                               (y + (self.object_size / 2)), fill=food_color)
+        self.field.create_oval(x, y, (x+self.object_size), (y+self.object_size), fill=food_color)
+        #self.field.create_oval((x - (self.object_size / 2)), (y - (self.object_size / 2)), (x + (self.object_size / 2)),(y + (self.object_size / 2)), fill=food_color)
         self.field.pack()
+
+    def clean_canvas(self):
+
+         self.field.delete('all')
+         self.field.pack()

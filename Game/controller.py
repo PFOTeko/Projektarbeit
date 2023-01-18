@@ -11,9 +11,11 @@ class Controller(Observer):
         self.height = 600
 
         self.field = Field(self.width, self.height)
-        snake, food = self.field.build_game('Left')
+        self.snake, self.food = self.field.build_game('Left')
+
         self.gui = Gui(self.width, self.height)
-        self.draw_snake = self.gui.draw_snake(snake)
+        self.gui.draw_snake(self.snake)
+        self.gui.draw_food(self.food)
 
         self.gui.attach(self)
         self.gui.run()
@@ -35,7 +37,10 @@ class Controller(Observer):
     def update_game(self, direction):
 
         snake, food = self.field.build_game(direction)
-        self.gui.draw_snake(snake)
+        self.gui.clean_canvas()
+
+        self.gui.draw_snake(self.snake)
+        self.gui.draw_food(self.food)
 
         print(snake, food)
 
