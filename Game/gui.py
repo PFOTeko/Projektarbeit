@@ -1,5 +1,6 @@
 import tkinter as tk
 from subject import Subject
+from tkinter.ttk import Label
 
 
 class Gui(Subject):
@@ -22,6 +23,7 @@ class Gui(Subject):
         self.window.bind('<Key>', self.keyboard_handler)
         self.draw_background()
         self.draw_buttons()
+        self.draw_score()
 
     def run(self):
         self.window.mainloop()
@@ -67,6 +69,9 @@ class Gui(Subject):
 
         speed_down_button = tk.Button(self.window, command=self.speed_down_button_handler, text="Speed Down", width=12, height=2)
         speed_down_button.place(x=450, y=620)
+
+    def draw_score(self):
+        label = Label(self.window, text='Punktestand:').place(x=450, y=10)
 
     def draw_snake(self, snake):
 
