@@ -12,7 +12,7 @@ class Gui(Subject):
         self.width = width
         self.height = height
         self.menu_height = 70
-        self.object_size = 15
+        self.object_size = 10
         screen_resolution = str(self.width) + 'x' + str(self.height + self.menu_height)
 
         self.window = tk.Tk()
@@ -22,8 +22,6 @@ class Gui(Subject):
         self.window.bind('<Key>', self.keyboard_handler)
         self.draw_background()
         self.draw_buttons()
-        self.draw_snake([])
-        self.draw_food([0, 0])
 
     def run(self):
         self.window.mainloop()
@@ -75,7 +73,9 @@ class Gui(Subject):
         snake_color = '#7FFF00'  # green
 
         for body_part in snake:
+
             x, y = body_part
+
             x0, y0 = self.snake_start_position
 
             x1, y1 = (x0 - (self.object_size / 2) + (x * self.object_size)),\
@@ -90,11 +90,12 @@ class Gui(Subject):
 
     def draw_food(self, food):
 
+        food_color = '#FF0000'  # red
+
         x, y = food
 
-        food_color = '#FF0000'  # red
-        self.field.create_oval(x, y, (x+self.object_size), (y+self.object_size), fill=food_color)
-        #self.field.create_oval((x - (self.object_size / 2)), (y - (self.object_size / 2)), (x + (self.object_size / 2)),(y + (self.object_size / 2)), fill=food_color)
+        self.field.create_oval((x - (self.object_size / 2)), (y - (self.object_size / 2)), (x + (self.object_size / 2)),(y + (self.object_size / 2)), fill=food_color)
+
         self.field.pack()
 
     def clean_canvas(self):

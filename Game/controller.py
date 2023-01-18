@@ -31,14 +31,13 @@ class Controller(Observer):
         else:
             pressed = event.keysym
             if pressed in keys:
-                #print(pressed)
                 self.update_game(pressed)
 
     def update_game(self, direction):
 
         snake, food = self.field.build_game(direction)
-        self.gui.clean_canvas()
 
+        self.gui.clean_canvas()
         self.gui.draw_snake(self.snake)
         self.gui.draw_food(self.food)
 

@@ -5,8 +5,8 @@ import random
 class Field:
     def __init__(self, width, height):
 
-        self.height_field = 10
-        self.width_field = 10
+        self.height_field = height
+        self.width_field = width
         self.snake_start = [((self.width_field / 2), (self.height_field / 2))]
         self.snake = Snake()
         self.snake_position = []
