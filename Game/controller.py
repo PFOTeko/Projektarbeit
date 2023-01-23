@@ -35,8 +35,8 @@ class Controller(Observer):
         snake, food = self.field.build_game(direction)
 
         self.gui.clean_canvas()
-        self.gui.draw_snake(self.snake)
         self.gui.draw_food(self.food)
+        self.gui.draw_snake(self.snake)
 
         print(snake, food)
 

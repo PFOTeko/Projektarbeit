@@ -72,7 +72,9 @@ class Gui(Subject):
     def draw_score(self):
         label = Label(self.window, text='Punktestand:').place(x=450, y=10)
 
-    def scale_objects(self, x, y):
+    def scale_objects(self, object):
+
+        x, y = object
 
         x0, y0 = self.snake_start_position
 
@@ -84,16 +86,13 @@ class Gui(Subject):
 
         return x1, y1, x2, y2
 
-
     def draw_snake(self, snake):
 
         snake_color = '#7FFF00'  # green
 
         for body_part in snake:
 
-            x, y = body_part
-
-            x1, y1, x2, y2 = self.scale_objects(x, y)
+            x1, y1, x2, y2 = self.scale_objects(body_part)
 
             self.field.create_oval(x1, y1, x2, y2, fill=snake_color)
 
@@ -103,11 +102,9 @@ class Gui(Subject):
 
         food_color = '#FF0000'  # red
 
-        x, y = food
+        print(food)
 
-        x1, y1, x2, y2 = self.scale_objects(x, y)
-
-        print(x1, y1, x2, y2)
+        x1, y1, x2, y2 = self.scale_objects(food)
 
         self.field.create_oval(x1, y1, x2, y2, fill=food_color)
 
