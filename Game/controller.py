@@ -8,7 +8,7 @@ class Controller(Observer):
     def __init__(self):
 
         self.field = Field()
-        self.snake, self.food = self.field.build_game('Left')
+        self.snake, self.food, self.counter = self.field.build_game('Left')
 
         self.gui = Gui()
         self.gui.draw_snake(self.snake)
@@ -32,13 +32,14 @@ class Controller(Observer):
 
     def update_game(self, direction):
 
-        snake, food = self.field.build_game(direction)
+        self.snake, self.food, self.counter = self.field.build_game(direction)
 
         self.gui.clean_canvas()
         self.gui.draw_food(self.food)
         self.gui.draw_snake(self.snake)
+        self.gui.draw_score(self.counter)
 
-        print(snake, food)
+        print(self.snake, self.food, self.counter)
 
 
 if __name__ == "__main__":

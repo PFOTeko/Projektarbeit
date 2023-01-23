@@ -12,6 +12,7 @@ class Field:
         self.snake_position = []
         self.food = []
         self.game_over = False
+        self.counter = 0
 
     def get_snake(self, direction):
 
@@ -50,6 +51,8 @@ class Field:
         if eaten is True:
             self.food = self.get_random_food_position()
             self.snake.grow_snake()
+            self.counter += 1
+
 
         crash = self.snake.check_self_crash()
 
@@ -58,7 +61,7 @@ class Field:
 
             #print(snake, self.food)
 
-        return snake, self.food
+        return snake, self.food, self.counter
 
 
 
