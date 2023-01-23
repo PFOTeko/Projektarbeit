@@ -105,8 +105,6 @@ class Gui(Subject):
 
         food_color = '#FF0000'  # red
 
-        print(food)
-
         x1, y1, x2, y2 = self.scale_objects(food)
 
         self.field.create_oval(x1, y1, x2, y2, fill=food_color)

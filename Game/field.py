@@ -53,15 +53,12 @@ class Field:
             self.snake.grow_snake()
             self.counter += 1
 
-
         crash = self.snake.check_self_crash()
 
         if crash is True:
             self.game_over = True
 
-            #print(snake, self.food)
-
-        return snake, self.food, self.counter
+        return snake, self.food, self.counter, self.game_over
 
 
 

@@ -26,7 +26,11 @@ class Snake:
 
     def check_self_crash(self):
 
-        if self.snake_body[0] in self.snake_body:
+        snake_body = self.snake_body.copy()
+
+        snake_body.pop(0)
+
+        if self.snake_body[0] in snake_body:
             bite = True
         else:
             bite = False
