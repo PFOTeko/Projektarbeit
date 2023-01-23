@@ -5,15 +5,14 @@ from tkinter.ttk import Label
 
 class Gui(Subject):
 
-    def __init__(self, width, height):
-
-        self.snake_start_position = (300, 300)  # Nur für Testzwecke
+    def __init__(self):
 
         self.field = None
-        self.width = width
-        self.height = height
+        self.width = 600
+        self.height = 600
         self.menu_height = 70
         self.object_size = 10
+        self.snake_start_position = ((self.width/2), (self.height/2))
         screen_resolution = str(self.width) + 'x' + str(self.height + self.menu_height)
 
         self.window = tk.Tk()
@@ -73,6 +72,19 @@ class Gui(Subject):
     def draw_score(self):
         label = Label(self.window, text='Punktestand:').place(x=450, y=10)
 
+    def scale_objects(self, x, y):
+
+        x0, y0 = self.snake_start_position
+
+        x1, y1 = (x0 - (self.object_size / 2) + (x * self.object_size)), \
+            (y0 - (self.object_size / 2) + (y * self.object_size))
+
+        x2, y2 = (x0 + (self.object_size / 2) + (x * self.object_size)), \
+            (y0 + (self.object_size / 2) + (y * self.object_size))
+
+        return x1, y1, x2, y2
+
+
     def draw_snake(self, snake):
 
         snake_color = '#7FFF00'  # green
@@ -81,13 +93,7 @@ class Gui(Subject):
 
             x, y = body_part
 
-            x0, y0 = self.snake_start_position
-
-            x1, y1 = (x0 - (self.object_size / 2) + (x * self.object_size)),\
-                     (y0 - (self.object_size / 2) + (y * self.object_size))
-
-            x2, y2 = (x0 + (self.object_size / 2) + (x * self.object_size)),\
-                     (y0 + (self.object_size / 2) + (y * self.object_size))
+            x1, y1, x2, y2 = self.scale_objects(x, y)
 
             self.field.create_oval(x1, y1, x2, y2, fill=snake_color)
 
@@ -99,7 +105,11 @@ class Gui(Subject):
 
         x, y = food
 
-        self.field.create_oval((x - (self.object_size / 2)), (y - (self.object_size / 2)), (x + (self.object_size / 2)),(y + (self.object_size / 2)), fill=food_color)
+        x1, y1, x2, y2 = self.scale_objects(x, y)
+
+        print(x1, y1, x2, y2)
+
+        self.field.create_oval(x1, y1, x2, y2, fill=food_color)
 
         self.field.pack()
 

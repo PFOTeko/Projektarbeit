@@ -3,10 +3,10 @@ import random
 
 
 class Field:
-    def __init__(self, width, height):
+    def __init__(self):
 
-        self.height_field = height
-        self.width_field = width
+        self.height_field = 29
+        self.width_field = 29
         self.snake_start = [((self.width_field / 2), (self.height_field / 2))]
         self.snake = Snake()
         self.snake_position = []

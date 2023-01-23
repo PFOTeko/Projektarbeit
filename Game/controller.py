@@ -7,13 +7,10 @@ class Controller(Observer):
 
     def __init__(self):
 
-        self.width = 600
-        self.height = 600
-
-        self.field = Field(self.width, self.height)
+        self.field = Field()
         self.snake, self.food = self.field.build_game('Left')
 
-        self.gui = Gui(self.width, self.height)
+        self.gui = Gui()
         self.gui.draw_snake(self.snake)
         self.gui.draw_food(self.food)
 
