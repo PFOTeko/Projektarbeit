@@ -5,18 +5,18 @@ import random
 class Field:
     def __init__(self):
 
+        self.start_position = [(0, 0), (1, 0), (2, 0)]
         self.height_field = 29
         self.width_field = 29
         self.snake_start = [((self.width_field / 2), (self.height_field / 2))]
-        self.snake = Snake()
-        self.snake_position = []
+        self.snake = Snake(self.start_position)
         self.food = []
         self.game_over = False
         self.counter = 0
 
     def get_snake(self, direction):
 
-        self.snake_position = self.snake.move_snake(direction)
+        self.snake_position = self.snake.set_direction(direction)
 
         return self.snake_position
 
@@ -50,7 +50,7 @@ class Field:
 
         if eaten is True:
             self.food = self.get_random_food_position()
-            self.snake.grow_snake()
+            self.snake.grow()
             self.counter += 1
 
         crash = self.snake.check_self_crash()

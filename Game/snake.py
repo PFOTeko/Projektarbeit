@@ -1,16 +1,22 @@
 class Snake:
 
-    def __init__(self):
+    def __init__(self, start_position):
 
-        self.snake_body = [(0, 0), (1, 0), (2, 0)]
-        self.direction = None
+        self.snake_body = start_position
+        self.direction = 'Left'
         self.moves = {'Up': (0, -1), 'Down': (0, 1), 'Left': (-1, 0), 'Right': (1, 0)}
         self.tail = []
+        self.directions = ['Up', 'Down', 'Right', 'Left']
 
-    def move_snake(self, direction):
+    def set_direction(self, direction):
+
+        if direction in self.directions:
+            self.direction = direction
+
+    def move(self):
 
         x, y = self.snake_body[0]
-        dx, dy = self.moves[direction]
+        dx, dy = self.moves[self.direction]
         new_head_position = x + dx, y + dy
 
         self.snake_body.insert(0, new_head_position)
@@ -18,7 +24,7 @@ class Snake:
 
         return self.snake_body
 
-    def grow_snake(self):
+    def grow(self):
 
         self.snake_body.append(self.tail)
 
