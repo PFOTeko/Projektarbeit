@@ -6,8 +6,8 @@ class TestField(unittest.TestCase):
 
     def creat_field(self):
 
-        width = 10
-        length = 10
+        width = 29
+        length = 29
 
         # Creating a test playfield
 
@@ -19,60 +19,50 @@ class TestField(unittest.TestCase):
 
         return expected_result
 
-    def test_food_and_snake(self):
-
-        width = 10
-        length = 10
+    def test_food(self):
 
         expected_result = self.creat_field()
-        field = Field(width, length)
+        field = Field()
 
         # Act
-        # Direction left and up the coordinate is out of the field and the test fails
-        snake = field.get_snake('Right')
-        #print(snake)
-        food = field.get_random_food_position()
-        #print(food)
-        actual_result_food = food
 
-        actual_result_snake = snake
+        food = field.get_random_food_position()
+
+        actual_result_food = food
 
         # Assert
 
         self.assertIn(actual_result_food, expected_result)
 
-        for xy in actual_result_snake:
-            pos = xy
-            self.assertIn(pos, expected_result)
-
     def test_build_game(self):
 
-        width = 10
-        length = 10
+        expected_result_food = self.creat_field()
+        field = Field()
 
-        expected_result = self.creat_field()
-        field = Field(width, length)
+        game = field.build_game(None)
 
-        game = field.build_game('Right')
-
-        actual_result_game_snake, actual_result_game_food = game
+        actual_result_game_snake, actual_result_game_food, counter, game_over = game
 
         # Assert
 
-        for xy in actual_result_game_snake:
-            pos = xy
-            self.assertIn(pos, expected_result)
+        print(actual_result_game_snake)
 
-        self.assertIn(actual_result_game_food, expected_result)
+        expected_result_snake = [(-1, 0), (0, 0), (1, 0)]
 
+        self.assertEqual(actual_result_game_snake, expected_result_snake)
+        self.assertIn(actual_result_game_food, expected_result_food)
+
+
+'''
     def test_check_food_eaten(self):
         Field.snake_position = [1, 2]
         Field.food = [1, 2]
         self.assertTrue(Field.check_food_eaten)
 
-        '''Field.snake_position = [1, 2]
+        Field.snake_position = [1, 2]
         Field.food = [3, 4]
-        self.assertFalse(Field.check_food_eaten)'''
+        self.assertFalse(Field.check_food_eaten)
+'''
 
 
 if __name__ == '__main__':

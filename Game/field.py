@@ -14,25 +14,19 @@ class Field:
         self.game_over = False
         self.counter = 0
 
-    def get_snake(self, direction):
-
-        self.snake_position = self.snake.set_direction(direction)
-
-        return self.snake_position
-
     def get_random_food_position(self):
 
         free_pos = []
         for x in range(self.width_field):
             for y in range(self.height_field):
-                if (x, y) not in self.snake_position:
+                if (x, y) not in self.snake.snake_body:
                     free_pos.append((x, y))
 
         return random.choice(free_pos)
 
     def check_food_eaten(self):
 
-        if self.food in self.snake_position:
+        if self.food in self.snake.snake_body:
             eaten = True
         else:
             eaten = False
@@ -41,7 +35,8 @@ class Field:
 
     def build_game(self, direction):
 
-        snake = self.get_snake(direction)
+        self.snake.set_direction(direction)
+        self.snake.move()
 
         if self.food is None or len(self.food) == 0:
             self.food = self.get_random_food_position()
@@ -58,7 +53,7 @@ class Field:
         if crash is True:
             self.game_over = True
 
-        return snake, self.food, self.counter, self.game_over
+        return self.snake.snake_body, self.food, self.counter, self.game_over
 
 
 

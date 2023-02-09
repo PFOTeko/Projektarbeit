@@ -10,16 +10,16 @@ class TestSnake(unittest.TestCase):
 
         snake = Snake(start_position)
 
-        direction = 'Up'
+        direction = None
 
         # Act
 
-        actual_result_move = snake.move(direction)
+        actual_result_direction = snake.set_direction(direction)
 
         # Assert
-        self.assertEqual(actual_result_move, [(0, -1), (0, 0), (1, 0)])
+        self.assertEqual(actual_result_direction, 'Left')
 
-        print(actual_result_move)
+        print(actual_result_direction)
 
     def test_snake_grow(self):
 
@@ -27,8 +27,10 @@ class TestSnake(unittest.TestCase):
 
         snake = Snake(start_position)
 
+        snake.set_direction('Down')
+
         # Act
-        snake.move('Down')
+        snake.move()
         actual_result_grow = snake.grow()
 
         # Assert
@@ -42,16 +44,18 @@ class TestSnake(unittest.TestCase):
 
         snake = Snake(start_position)
 
+        direction = 'Up'
+
+        snake.set_direction(direction)
+
         # Act
 
-        actual_result_move = snake.check_direction()
+        actual_result_move = snake.move()
 
         # Assert
-        self.assertEqual(actual_result_move, [(-1, 0), (0, 0), (1, 0)])
+        self.assertEqual(actual_result_move, [(0, -1), (0, 0), (1, 0)])
 
         print(actual_result_move)
-
-
 
 
 if __name__ == '__main__':

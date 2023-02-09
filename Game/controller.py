@@ -8,7 +8,7 @@ class Controller(Observer):
     def __init__(self):
 
         self.field = Field()
-        self.snake, self.food, self.counter, self.game_over = self.field.build_game('Left')
+        self.snake, self.food, self.counter, self.game_over = self.field.build_game(None)
 
         self.gui = Gui()
         self.gui.draw_snake(self.snake)

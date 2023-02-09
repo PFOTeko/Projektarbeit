@@ -13,6 +13,8 @@ class Snake:
         if direction in self.directions:
             self.direction = direction
 
+        return self.direction
+
     def move(self):
 
         x, y = self.snake_body[0]
