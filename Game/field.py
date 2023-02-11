@@ -6,9 +6,8 @@ class Field:
     def __init__(self):
 
         self.start_position = [(0, 0), (1, 0), (2, 0)]
-        self.height_field = 29
-        self.width_field = 29
-        self.snake_start = [((self.width_field / 2), (self.height_field / 2))]
+        self.height_field = 15
+        self.width_field = 15
         self.snake = Snake(self.start_position)
         self.food = []
         self.game_over = False
@@ -17,8 +16,8 @@ class Field:
     def get_random_food_position(self):
 
         free_pos = []
-        for x in range(self.width_field):
-            for y in range(self.height_field):
+        for x in range((-1*self.width_field), self.width_field):
+            for y in range((-1*self.height_field), self.height_field):
                 if (x, y) not in self.snake.snake_body:
                     free_pos.append((x, y))
 

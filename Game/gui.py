@@ -11,7 +11,7 @@ class Gui(Subject):
         self.width = 600
         self.height = 600
         self.menu_height = 70
-        self.object_size = 10
+        self.object_size = 20
         self.snake_start_position = ((self.width/2), (self.height/2))
         screen_resolution = str(self.width) + 'x' + str(self.height + self.menu_height)
 
