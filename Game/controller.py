@@ -2,6 +2,8 @@ from field import Field
 from gui import Gui
 from observer import Observer
 
+import time
+
 
 class Controller(Observer):
 
@@ -16,6 +18,7 @@ class Controller(Observer):
 
         self.gui.attach(self)
         self.gui.run()
+        self.run()
 
     def update(self, event):
 
@@ -40,6 +43,14 @@ class Controller(Observer):
         self.gui.draw_score(self.counter)
 
         print(self.snake, self.food, self.counter, self.game_over)
+
+    def run(self):
+        start_time = time.time()
+        while True:
+            delta_time = round((time.time() - start_time), 2)
+            if delta_time > 1:
+                print(delta_time)
+                start_time = time.time()
 
 
 if __name__ == "__main__":
