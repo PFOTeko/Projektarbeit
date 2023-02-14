@@ -27,8 +27,6 @@ class Gui(Subject):
     def run(self):
         self.window.mainloop()
 
-       # todo: Punkteanzeige
-
     def keyboard_handler(self, event):
         self.notify(event)
 

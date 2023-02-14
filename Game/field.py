@@ -6,8 +6,8 @@ class Field:
     def __init__(self):
 
         self.start_position = [(0, 0), (1, 0), (2, 0)]
-        self.height_field = 15
-        self.width_field = 15
+        self.height = 15
+        self.width = 15
         self.snake = Snake(self.start_position)
         self.food = []
         self.game_over = False
@@ -16,8 +16,8 @@ class Field:
     def get_random_food_position(self):
 
         free_pos = []
-        for x in range((-1*self.width_field), self.width_field):
-            for y in range((-1*self.height_field), self.height_field):
+        for x in range((-1 * self.width), self.width):
+            for y in range((-1 * self.height), self.height):
                 if (x, y) not in self.snake.snake_body:
                     free_pos.append((x, y))
 
@@ -26,11 +26,11 @@ class Field:
     def check_food_eaten(self):
 
         if self.food in self.snake.snake_body:
-            eaten = True
+            is_eaten = True
         else:
-            eaten = False
+            is_eaten = False
 
-        return eaten
+        return is_eaten
 
     def build_game(self, direction):
 
@@ -40,25 +40,12 @@ class Field:
         if self.food is None or len(self.food) == 0:
             self.food = self.get_random_food_position()
 
-        eaten = self.check_food_eaten()
-
-        if eaten is True:
+        if self.check_food_eaten():
             self.food = self.get_random_food_position()
             self.snake.grow()
             self.counter += 1
 
-        crash = self.snake.check_self_crash()
-
-        if crash is True:
+        if self.snake.check_self_crash():
             self.game_over = True
 
         return self.snake.snake_body, self.food, self.counter, self.game_over
-
-
-
-
-
-
-
-
-
