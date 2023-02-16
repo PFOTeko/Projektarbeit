@@ -20,17 +20,36 @@ class Controller(Observer):
         self.gui.draw_food(self.food)
 
         self.pressed = None
+        self.speed = 0.3
+        self.loop = True
+        self.pause = False
 
     def update(self, event):
 
         button = ['start', 'pause', 'speed_up', 'speed_down']
-        keys = ['Up', 'Down', 'Right', 'Left']
 
         if event in button:
-            print('Button')
+            if event == 'speed_up' or 'speed_down':
+                self.get_speed(event)
+
+            if event == 'pause':
+                self.pause = not self.pause
+
+            if event == 'exit':
+                self.loop ^= self.loop
 
         else:
             self.pressed = event.keysym
+
+    def get_speed(self, change):
+
+        if change == 'speed_up':
+            self.speed -= 0.1
+            if self.speed <= 0:
+                self.speed = 0.1
+
+        if change == 'speed_down':
+            self.speed += 0.1
 
     def update_game(self):
 
@@ -45,12 +64,20 @@ class Controller(Observer):
 
     def run(self):
         start_time = time.time()
-        while True:
-            delta_time = round((time.time() - start_time), 2)
-            if delta_time > 0.25:
-                self.update_game()
+
+        while self.loop:
+
+            delta_time = round((time.time() - start_time), 4)
+
+            if delta_time >= self.speed:
+
+                if not self.pause:
+                    self.update_game()
+
                 self.gui.update()
-                print(delta_time)
+
+                print(self.pause)
+                print(self.speed)
                 start_time = time.time()
 
 

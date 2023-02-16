@@ -58,7 +58,7 @@ class Gui(Subject):
 
     def draw_buttons(self):
 
-        start_button = tk.Button(self.window, command=self.start_button_handler, text="Start", width=12, height=2)
+        start_button = tk.Button(self.window, command=self.start_button_handler, text="Restart", width=12, height=2)
         start_button.place(x=60, y=620)
 
         pause_button = tk.Button(self.window, command=self.pause_button_handler, text="Pause", width=12, height=2)
