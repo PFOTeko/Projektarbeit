@@ -26,6 +26,9 @@ class Gui(Subject):
 
     def run(self):
         self.window.mainloop()
+    def update(self):
+        self.window.update_idletasks()
+        self.window.update()
 
     def keyboard_handler(self, event):
         self.notify(event)

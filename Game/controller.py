@@ -7,18 +7,19 @@ import time
 
 class Controller(Observer):
 
-    def __init__(self):
+    def __init__(self, model: Field, view: Gui):
 
-        self.field = Field()
+        self.field = model
+        self.gui = view
+
+        self.gui.attach(self)
+
         self.snake, self.food, self.counter, self.game_over = self.field.build_game(None)
 
-        self.gui = Gui()
         self.gui.draw_snake(self.snake)
         self.gui.draw_food(self.food)
 
-        self.gui.attach(self)
-        self.gui.run()
-        self.run()
+        self.pressed = None
 
     def update(self, event):
 
@@ -29,13 +30,11 @@ class Controller(Observer):
             print('Button')
 
         else:
-            pressed = event.keysym
-            if pressed in keys:
-                self.update_game(pressed)
+            self.pressed = event.keysym
 
-    def update_game(self, direction):
+    def update_game(self):
 
-        self.snake, self.food, self.counter, self.game_over = self.field.build_game(direction)
+        self.snake, self.food, self.counter, self.game_over = self.field.build_game(self.pressed)
 
         self.gui.clean_canvas()
         self.gui.draw_food(self.food)
@@ -48,13 +47,18 @@ class Controller(Observer):
         start_time = time.time()
         while True:
             delta_time = round((time.time() - start_time), 2)
-            if delta_time > 1:
+            if delta_time > 0.25:
+                self.update_game()
+                self.gui.update()
                 print(delta_time)
                 start_time = time.time()
 
 
 if __name__ == "__main__":
-    start = Controller()
 
+    model = Field()
+    view = Gui()
+    controller = Controller(model, view)
 
+    controller.run()
 
