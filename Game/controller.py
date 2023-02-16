@@ -48,12 +48,12 @@ class Controller(Observer):
     def get_speed(self, change):
 
         if change == 'speed_up':
-            self.speed -= 0.1
+            self.speed -= 0.05
             if self.speed <= 0:
-                self.speed = 0.1
+                self.speed = 0.05
 
         if change == 'speed_down':
-            self.speed += 0.1
+            self.speed += 0.05
 
     def update_game(self):
 
