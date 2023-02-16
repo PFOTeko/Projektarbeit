@@ -34,7 +34,7 @@ class Gui(Subject):
         self.notify(event)
 
     def start_button_handler(self):
-        self.notify('start')
+        self.notify('restart')
 
     def pause_button_handler(self):
         self.notify('pause')
@@ -74,7 +74,13 @@ class Gui(Subject):
 
         text = 'Punktestand: ' + str(score)
 
-        label = Label(self.window, text=text).place(x=450, y=10)
+        Label(self.window, text=text, font='Arial 12').place(x=450, y=10)
+
+    def draw_game_over(self):
+
+        text = 'Game Over'
+
+        Label(self.window, text=text, font='Arial 25').place(x=200, y=300)
 
     def scale_objects(self, object):
 

@@ -48,4 +48,4 @@ class Field:
         if self.snake.check_self_crash():
             self.game_over = True
 
-        return self.snake.snake_body, self.food, self.counter, self.game_over
+        return self.snake.snake_body

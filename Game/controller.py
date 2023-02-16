@@ -14,10 +14,10 @@ class Controller(Observer):
 
         self.gui.attach(self)
 
-        self.snake, self.food, self.counter, self.game_over = self.field.build_game(None)
+        self.snake = self.field.build_game(None)
 
         self.gui.draw_snake(self.snake)
-        self.gui.draw_food(self.food)
+        self.gui.draw_food(self.field.food)
 
         self.pressed = None
         self.speed = 0.3
@@ -26,14 +26,18 @@ class Controller(Observer):
 
     def update(self, event):
 
-        button = ['start', 'pause', 'speed_up', 'speed_down']
+        button = ['restart', 'pause', 'speed_up', 'speed_down']
 
         if event in button:
+
             if event == 'speed_up' or 'speed_down':
                 self.get_speed(event)
 
             if event == 'pause':
                 self.pause = not self.pause
+
+            if event == 'restart':
+                self.restart()
 
             if event == 'exit':
                 self.loop ^= self.loop
@@ -53,16 +57,18 @@ class Controller(Observer):
 
     def update_game(self):
 
-        self.snake, self.food, self.counter, self.game_over = self.field.build_game(self.pressed)
+        self.snake = self.field.build_game(self.pressed)
 
         self.gui.clean_canvas()
-        self.gui.draw_food(self.food)
+        self.gui.draw_food(self.field.food)
         self.gui.draw_snake(self.snake)
-        self.gui.draw_score(self.counter)
+        self.gui.draw_score(self.field.counter)
 
-        print(self.snake, self.food, self.counter, self.game_over)
+        if self.field.game_over:
+            self.gui.draw_game_over()
 
     def run(self):
+
         start_time = time.time()
 
         while self.loop:
@@ -71,7 +77,7 @@ class Controller(Observer):
 
             if delta_time >= self.speed:
 
-                if not self.pause:
+                if not self.pause and not self.field.game_over:
                     self.update_game()
 
                 self.gui.update()
@@ -79,6 +85,8 @@ class Controller(Observer):
                 print(self.pause)
                 print(self.speed)
                 start_time = time.time()
+    def restart(self):
+        print('restart')
 
 
 if __name__ == "__main__":
