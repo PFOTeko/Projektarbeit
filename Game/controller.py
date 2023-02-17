@@ -64,6 +64,8 @@ class Controller(Observer):
         self.gui.draw_snake(self.snake)
         self.gui.draw_score(self.field.counter)
 
+        print(self.snake)
+
         if self.field.game_over:
             self.gui.draw_game_over()
 
