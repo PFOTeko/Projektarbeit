@@ -60,6 +60,7 @@ class Controller(Observer):
         self.snake = self.field.game_logic(self.pressed)
 
         self.gui.clean_canvas()
+        self.gui.draw_background()
         self.gui.draw_food(self.field.food, 'red')
         self.gui.draw_snake(self.snake)
         self.gui.draw_score(self.field.counter)
