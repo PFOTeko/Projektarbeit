@@ -89,7 +89,7 @@ class Gui(Subject):
         background_color = '#F5F5DC'  # beige
         text = 'GAME OVER'
 
-        tk.Label(self.window, text=text, font='Arial 25',background=background_color).place(x=20, y=250)
+        tk.Label(self.window, text=text, font='Arial 25',background=background_color).place(x=210, y=250)
 
     def scale_objects(self, objects):
 

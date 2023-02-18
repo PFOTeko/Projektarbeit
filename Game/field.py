@@ -50,7 +50,7 @@ class Field:
             self.snake.grow()
             self.counter += 2
 
-        if self.step >= 40:
+        if self.step >= 25:
             self.is_special_food = False
 
     def game_logic(self, direction):
