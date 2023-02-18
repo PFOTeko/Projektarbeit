@@ -11,7 +11,7 @@ class Gui(Subject):
         self.width = 600
         self.height = 600
         self.menu_height = 70
-        self.object_size = 20
+        self.object_size = 15
         self.snake_start_position = ((self.width/2), (self.height/2))
         screen_resolution = str(self.width) + 'x' + str(self.height + self.menu_height)
 
@@ -59,28 +59,38 @@ class Gui(Subject):
     def draw_buttons(self):
 
         start_button = tk.Button(self.window, command=self.start_button_handler, text="Restart", width=12, height=2)
-        start_button.place(x=60, y=620)
+        start_button.place(x=30, y=620)
 
         pause_button = tk.Button(self.window, command=self.pause_button_handler, text="Pause", width=12, height=2)
-        pause_button.place(x=190, y=620)
+        pause_button.place(x=140, y=620)
 
         speed_up_button = tk.Button(self.window, command=self.speed_up_button_handler, text="Speed Up", width=12, height=2)
-        speed_up_button.place(x=320, y=620)
+        speed_up_button.place(x=250, y=620)
 
         speed_down_button = tk.Button(self.window, command=self.speed_down_button_handler, text="Speed Down", width=12, height=2)
-        speed_down_button.place(x=450, y=620)
+        speed_down_button.place(x=360, y=620)
 
     def draw_score(self, score):
 
+        menu_color = '#D3D3D3'  # grey
         text = 'Punktestand: ' + str(score)
 
-        Label(self.window, text=text, font='Arial 12').place(x=450, y=10)
+        tk.Label(self.window, text=text, font='Arial 12',background=menu_color).place(x=470, y=615)
+
+    def draw_speed(self, speed):
+
+        menu_color = '#D3D3D3'  # grey
+        text = 'Speed: ' + str(speed)
+
+        label = tk.Label(self.window, text=text, font='Arial 12', background=menu_color).place(x=470, y=640)
+
 
     def draw_game_over(self):
 
-        text = 'Game Over'
+        background_color = '#F5F5DC'  # beige
+        text = 'GAME OVER'
 
-        Label(self.window, text=text, font='Arial 25').place(x=200, y=300)
+        tk.Label(self.window, text=text, font='Arial 25',background=background_color).place(x=210, y=250)
 
     def scale_objects(self, object):
 
@@ -108,13 +118,13 @@ class Gui(Subject):
 
         self.field.pack()
 
-    def draw_food(self, food):
+    def draw_food(self, food, color):
 
-        food_color = '#FF0000'  # red
+        food_color = {'red': '#FF0000', 'blue': '#1D6FE0'}
 
         x1, y1, x2, y2 = self.scale_objects(food)
 
-        self.field.create_oval(x1, y1, x2, y2, fill=food_color)
+        self.field.create_oval(x1, y1, x2, y2, fill=food_color[color])
 
         self.field.pack()
 

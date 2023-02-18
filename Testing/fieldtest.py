@@ -39,7 +39,7 @@ class TestField(unittest.TestCase):
         expected_result_food = self.creat_field()
         field = Field()
 
-        game = field.build_game(None)
+        game = field.game_logic(None)
 
         actual_result_game_snake, actual_result_game_food, counter, game_over = game
 

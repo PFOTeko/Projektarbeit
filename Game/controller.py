@@ -14,10 +14,10 @@ class Controller(Observer):
 
         self.gui.attach(self)
 
-        self.snake = self.field.build_game(None)
+        self.snake = self.field.game_logic(None)
 
         self.gui.draw_snake(self.snake)
-        self.gui.draw_food(self.field.food)
+        self.gui.draw_food(self.field.food, 'red')
 
         self.pressed = None
         self.speed = 0.3
@@ -49,7 +49,7 @@ class Controller(Observer):
 
         if change == 'speed_up':
             self.speed -= 0.05
-            if self.speed <= 0:
+            if self.speed <= 0.05:
                 self.speed = 0.05
 
         if change == 'speed_down':
@@ -57,12 +57,16 @@ class Controller(Observer):
 
     def update_game(self):
 
-        self.snake = self.field.build_game(self.pressed)
+        self.snake = self.field.game_logic(self.pressed)
 
         self.gui.clean_canvas()
-        self.gui.draw_food(self.field.food)
+        self.gui.draw_food(self.field.food, 'red')
         self.gui.draw_snake(self.snake)
         self.gui.draw_score(self.field.counter)
+        self.gui.draw_speed(round(self.speed, 2))
+
+        if self.field.is_special_food:
+            self.gui.draw_food(self.field.special_food, 'blue')
 
         print(self.snake)
 
@@ -84,8 +88,6 @@ class Controller(Observer):
 
                 self.gui.update()
 
-                print(self.pause)
-                print(self.speed)
                 start_time = time.time()
     def restart(self):
         print('restart')
