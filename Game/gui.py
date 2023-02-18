@@ -6,12 +6,13 @@ from tkinter.ttk import Label
 class Gui(Subject):
 
     def __init__(self):
+
         self.field = None
         self.width = 600
         self.height = 600
         self.menu_height = 70
         self.object_size = 15
-        self.snake_start_position = ((self.width / 2), (self.height / 2))
+        self.snake_start_position = ((self.width/2), (self.height/2))
         screen_resolution = str(self.width) + 'x' + str(self.height + self.menu_height)
 
         self.window = tk.Tk()
@@ -25,7 +26,6 @@ class Gui(Subject):
 
     def run(self):
         self.window.mainloop()
-
     def update(self):
         self.window.update_idletasks()
         self.window.update()
@@ -64,12 +64,10 @@ class Gui(Subject):
         pause_button = tk.Button(self.window, command=self.pause_button_handler, text="Pause", width=12, height=2)
         pause_button.place(x=140, y=620)
 
-        speed_up_button = tk.Button(self.window, command=self.speed_up_button_handler, text="Speed Up", width=12,
-                                    height=2)
+        speed_up_button = tk.Button(self.window, command=self.speed_up_button_handler, text="Speed Up", width=12, height=2)
         speed_up_button.place(x=250, y=620)
 
-        speed_down_button = tk.Button(self.window, command=self.speed_down_button_handler, text="Speed Down", width=12,
-                                      height=2)
+        speed_down_button = tk.Button(self.window, command=self.speed_down_button_handler, text="Speed Down", width=12, height=2)
         speed_down_button.place(x=360, y=620)
 
     def draw_score(self, score):
@@ -77,7 +75,7 @@ class Gui(Subject):
         menu_color = '#D3D3D3'  # grey
         text = 'Punktestand: ' + str(score)
 
-        tk.Label(self.window, text=text, font='Arial 12', background=menu_color).place(x=470, y=615)
+        tk.Label(self.window, text=text, font='Arial 12',background=menu_color).place(x=470, y=615)
 
     def draw_speed(self, speed):
 
@@ -91,7 +89,7 @@ class Gui(Subject):
         background_color = '#F5F5DC'  # beige
         text = 'GAME OVER'
 
-        tk.Label(self.window, text=text, font='Arial 25', background=background_color).place(x=210, y=250)
+        tk.Label(self.window, text=text, font='Arial 25',background=background_color).place(x=20, y=250)
 
     def scale_objects(self, objects):
 
@@ -100,10 +98,10 @@ class Gui(Subject):
         x0, y0 = self.snake_start_position
 
         x1, y1 = (x0 - (self.object_size / 2) + (x * self.object_size)), \
-                 (y0 - (self.object_size / 2) + (y * self.object_size))
+            (y0 - (self.object_size / 2) + (y * self.object_size))
 
         x2, y2 = (x0 + (self.object_size / 2) + (x * self.object_size)), \
-                 (y0 + (self.object_size / 2) + (y * self.object_size))
+            (y0 + (self.object_size / 2) + (y * self.object_size))
 
         return x1, y1, x2, y2
 
@@ -112,6 +110,7 @@ class Gui(Subject):
         snake_color = '#7FFF00'  # green
 
         for body_part in snake:
+
             x1, y1, x2, y2 = self.scale_objects(body_part)
 
             self.field.create_oval(x1, y1, x2, y2, fill=snake_color)
