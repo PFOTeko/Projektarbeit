@@ -20,7 +20,7 @@ class Controller(Observer):
         self.gui.draw_food(self.field.food, 'red')
 
         self.pressed = None
-        self.speed = 0.3
+        self.speed = 0.12
         self.loop = True
         self.pause = False
 
@@ -48,12 +48,12 @@ class Controller(Observer):
     def get_speed(self, change):
 
         if change == 'speed_up':
-            self.speed -= 0.05
-            if self.speed <= 0.05:
-                self.speed = 0.05
+            self.speed -= 0.03
+            if self.speed <= 0.03:
+                self.speed = 0.03
 
         if change == 'speed_down':
-            self.speed += 0.05
+            self.speed += 0.03
 
     def update_game(self):
 

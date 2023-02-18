@@ -20,8 +20,8 @@ class Field:
     def get_random_food_position(self):
 
         free_pos = []
-        for x in range((-1 * self.width), self.width):
-            for y in range((-1 * self.height), self.height):
+        for x in range((-1 * self.width) + 1, self.width - 1):
+            for y in range((-1 * self.height) + 1, self.height - 1):
                 if (x, y) not in self.snake.body:
                     free_pos.append((x, y))
 
