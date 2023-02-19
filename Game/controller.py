@@ -21,8 +21,8 @@ class Controller(Observer):
 
         self.pressed = None
         self.speed = 0.12
-        self.loop = True
-        self.pause = False
+        self.is_loop = True
+        self.is_pause = False
 
     def update(self, event):
 
@@ -34,13 +34,13 @@ class Controller(Observer):
                 self.get_speed(event)
 
             if event == 'pause':
-                self.pause = not self.pause
+                self.is_pause = not self.is_pause
 
             if event == 'restart':
                 self.restart()
 
             if event == 'exit':
-                self.loop ^= self.loop
+                self.is_loop ^= self.is_loop
 
         else:
             self.pressed = event.keysym
@@ -70,20 +70,20 @@ class Controller(Observer):
 
         print(self.snake)
 
-        if self.field.game_over:
+        if self.field.is_game_over:
             self.gui.draw_game_over()
 
     def run(self):
 
         start_time = time.time()
 
-        while self.loop:
+        while self.is_loop:
 
             delta_time = round((time.time() - start_time), 4)
 
             if delta_time >= self.speed:
 
-                if not self.pause and not self.field.game_over:
+                if not self.is_pause and not self.field.is_game_over:
                     self.update_game()
 
                 self.gui.update()

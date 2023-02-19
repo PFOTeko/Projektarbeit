@@ -10,7 +10,7 @@ class Field:
         self.width = 20
         self.snake = Snake(self.start_position)
         self.food = []
-        self.game_over = False
+        self.is_game_over = False
         self.counter = 0
         self.special_food = []
         self.is_special_food = False
@@ -65,6 +65,6 @@ class Field:
         self.check_special_food()
 
         if self.snake.check_self_crash():
-            self.game_over = True
+            self.is_game_over = True
 
         return self.snake.body

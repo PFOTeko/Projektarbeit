@@ -66,11 +66,11 @@ class Snake:
 
     def check_self_crash(self):
 
-        snake_body = self.body.copy()
+        body = self.body.copy()
 
-        snake_body.pop(0)
+        body.pop(0)
 
-        if self.body[0] in snake_body:
+        if self.body[0] in body:
             bite = True
         else:
             bite = False
