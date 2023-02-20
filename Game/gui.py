@@ -80,7 +80,7 @@ class Gui(Subject):
     def draw_speed(self, speed):
 
         menu_color = '#D3D3D3'  # grey
-        text = 'Speed: ' + str(speed)
+        text = 'Speed: ' + str(round(speed, 2))
 
         tk.Label(self.window, text=text, font='Arial 12', background=menu_color).place(x=470, y=640)
 

@@ -11,18 +11,31 @@ class Controller(Observer):
 
         self.field = model
         self.gui = view
-
         self.gui.attach(self)
+        self.snake = self.field.game_logic(None)
+        self.gui.draw_snake(self.snake)
+        self.gui.draw_food(self.field.food, 'red')
+        self.pressed = None
+        self.speed = None
+        self.is_loop = None
+        self.is_pause = None
 
+        self.new_game()
+
+    def new_game(self):
+
+        self.field.new_game()
         self.snake = self.field.game_logic(None)
 
         self.gui.draw_snake(self.snake)
         self.gui.draw_food(self.field.food, 'red')
-
-        self.pressed = None
         self.speed = 0.12
+
         self.is_loop = True
         self.is_pause = False
+
+        self.pressed = None
+        self.update_game()
 
     def update(self, event):
 
@@ -37,7 +50,7 @@ class Controller(Observer):
                 self.is_pause = not self.is_pause
 
             if event == 'restart':
-                self.restart()
+                self.new_game()
 
             if event == 'exit':
                 self.is_loop ^= self.is_loop
@@ -89,8 +102,6 @@ class Controller(Observer):
                 self.gui.update()
 
                 start_time = time.time()
-    def restart(self):
-        print('restart')
 
 
 if __name__ == "__main__":
