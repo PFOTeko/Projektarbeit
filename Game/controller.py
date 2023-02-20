@@ -12,14 +12,11 @@ class Controller(Observer):
         self.field = model
         self.gui = view
         self.gui.attach(self)
-        self.snake = self.field.game_logic(None)
-        self.gui.draw_snake(self.snake)
-        self.gui.draw_food(self.field.food, 'red')
+        self.snake = None
         self.pressed = None
         self.speed = None
         self.is_loop = None
         self.is_pause = None
-
         self.new_game()
 
     def new_game(self):
