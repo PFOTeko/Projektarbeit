@@ -42,19 +42,29 @@ class Snake:
 
         if self.direction in left_right:
 
-            if x >= width or x <= (width * -1) and not self.is_change_side_X:
-                self.body[0] = (x * -1), y
+            if x >= width and not self.is_change_side_X:
+                self.body[0] = (width * -1), y
                 self.is_change_side_X = True
+            else:
+                self.is_change_side_X = False
 
+            if x <= (width * -1) and not self.is_change_side_X:
+                self.body[0] = width, y
+                self.is_change_side_X = True
             else:
                 self.is_change_side_X = False
 
         if self.direction in up_down:
 
-            if y >= height or y <= (height * -1) and not self.is_change_side_Y:
-                self.body[0] = x, (y * -1)
+            if y >= height and not self.is_change_side_Y:
+                self.body[0] = x, (height * -1)
                 self.is_change_side_Y = True
+            else:
+                self.is_change_side_Y = False
 
+            if y <= (height * -1) and not self.is_change_side_Y:
+                self.body[0] = x, height
+                self.is_change_side_Y = True
             else:
                 self.is_change_side_Y = False
 

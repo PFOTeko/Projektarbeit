@@ -24,6 +24,9 @@ class Gui(Subject):
         self.draw_buttons()
         self.draw_score(0)
         self.game_over_label = None
+        self.speed_label = None
+        self.score_label = None
+
 
     def run(self):
         self.window.mainloop()
@@ -76,16 +79,16 @@ class Gui(Subject):
         menu_color = '#D3D3D3'  # grey
         text = 'Punktestand: ' + str(score)
 
-        score_label = tk.Label(self.window, text=text, font='Arial 12',background=menu_color)
-        score_label.place(x=470, y=615)
+        self.score_label = tk.Label(self.window, text=text, font='Arial 12',background=menu_color)
+        self.score_label.place(x=470, y=615)
 
     def draw_speed(self, speed):
 
         menu_color = '#D3D3D3'  # grey
         text = 'Speed: ' + str(round(speed, 2))
 
-        speed_label = tk.Label(self.window, text=text, font='Arial 12', background=menu_color)
-        speed_label.place(x=470, y=640)
+        self.speed_label = tk.Label(self.window, text=text, font='Arial 12', background=menu_color)
+        self.speed_label.place(x=470, y=640)
 
     def draw_game_over(self):
 
@@ -138,4 +141,7 @@ class Gui(Subject):
 
     def remove_label(self):
         self.game_over_label.destroy()
+        self.speed_label.destroy()
+        self.score_label.destroy()
+
 

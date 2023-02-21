@@ -76,7 +76,6 @@ class Controller(Observer):
         self.gui.draw_food(self.field.food, 'red')
         self.gui.draw_snake(self.snake)
         self.gui.draw_score(self.field.counter)
-        self.gui.draw_speed(round(self.speed, 2))
 
         if self.field.is_special_food:
             self.gui.draw_food(self.field.special_food, 'blue')
@@ -100,6 +99,7 @@ class Controller(Observer):
                     self.update_game()
 
                 self.gui.update()
+                self.gui.draw_speed(round(self.speed, 2))
 
                 start_time = time.time()
 

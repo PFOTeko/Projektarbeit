@@ -69,9 +69,9 @@ class Field:
 
         self.step += 1
 
+        self.snake.change_side(self.width, self.height)
         self.snake.set_direction(direction)
         self.snake.move()
-        self.snake.change_side(self.width, self.height)
 
         self.check_food()
         self.check_special_food()
