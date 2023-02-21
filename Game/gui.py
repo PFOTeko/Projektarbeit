@@ -21,12 +21,12 @@ class Gui(Subject):
         self.window.resizable(width=False, height=False)
         self.window.bind('<Key>', self.keyboard_handler)
         self.draw_background()
-        self.draw_buttons(None)
         self.draw_score(0)
         self.game_over_label = None
         self.speed_label = None
         self.score_label = None
-        self.is_press_pause = False
+        self.is_press_pause = None
+        self.new_game()
 
     def new_game(self):
         self.is_press_pause = False
