@@ -28,6 +28,10 @@ class Gui(Subject):
         self.score_label = None
         self.is_press_pause = False
 
+    def new_game(self):
+        self.is_press_pause = False
+        self.draw_buttons(None)
+
     def run(self):
         self.window.mainloop()
     def update(self):

@@ -27,6 +27,7 @@ class Controller(Observer):
         self.field.new_game()
         self.snake = self.field.game_logic(None)
 
+        self.gui.new_game()
         self.gui.draw_snake(self.snake)
         self.gui.draw_food(self.field.food, 'red')
         self.speed = 0.12
