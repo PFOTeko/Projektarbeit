@@ -21,6 +21,9 @@ class Controller(Observer):
 
     def new_game(self):
 
+        if self.field.is_game_over:
+            self.gui.remove_label()
+
         self.field.new_game()
         self.snake = self.field.game_logic(None)
 

@@ -23,6 +23,7 @@ class Gui(Subject):
         self.draw_background()
         self.draw_buttons()
         self.draw_score(0)
+        self.game_over_label = None
 
     def run(self):
         self.window.mainloop()
@@ -75,21 +76,24 @@ class Gui(Subject):
         menu_color = '#D3D3D3'  # grey
         text = 'Punktestand: ' + str(score)
 
-        tk.Label(self.window, text=text, font='Arial 12',background=menu_color).place(x=470, y=615)
+        score_label = tk.Label(self.window, text=text, font='Arial 12',background=menu_color)
+        score_label.place(x=470, y=615)
 
     def draw_speed(self, speed):
 
         menu_color = '#D3D3D3'  # grey
         text = 'Speed: ' + str(round(speed, 2))
 
-        tk.Label(self.window, text=text, font='Arial 12', background=menu_color).place(x=470, y=640)
+        speed_label = tk.Label(self.window, text=text, font='Arial 12', background=menu_color)
+        speed_label.place(x=470, y=640)
 
     def draw_game_over(self):
 
         background_color = '#F5F5DC'  # beige
         text = 'GAME OVER'
 
-        tk.Label(self.window, text=text, font='Arial 25',background=background_color).place(x=210, y=250)
+        self.game_over_label = tk.Label(self.window, text=text, font='Arial 25', background=background_color)
+        self.game_over_label.place(x=210, y=250)
 
     def scale_objects(self, objects):
 
@@ -131,3 +135,7 @@ class Gui(Subject):
 
         self.field.delete('all')
         self.field.pack()
+
+    def remove_label(self):
+        self.game_over_label.destroy()
+
