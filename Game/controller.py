@@ -52,9 +52,6 @@ class Controller(Observer):
             if event == 'restart':
                 self.new_game()
 
-            if event == 'exit':
-                self.is_loop ^= self.is_loop
-
         else:
             self.pressed = event.keysym
 

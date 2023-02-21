@@ -21,12 +21,12 @@ class Gui(Subject):
         self.window.resizable(width=False, height=False)
         self.window.bind('<Key>', self.keyboard_handler)
         self.draw_background()
-        self.draw_buttons()
+        self.draw_buttons(None)
         self.draw_score(0)
         self.game_over_label = None
         self.speed_label = None
         self.score_label = None
-
+        self.is_press_pause = False
 
     def run(self):
         self.window.mainloop()
@@ -42,6 +42,13 @@ class Gui(Subject):
 
     def pause_button_handler(self):
         self.notify('pause')
+
+        self.is_press_pause = not self.is_press_pause
+
+        if self.is_press_pause:
+            self.draw_buttons('red')
+        else:
+            self.draw_buttons(None)
 
     def speed_up_button_handler(self):
         self.notify('speed_up')
@@ -60,18 +67,23 @@ class Gui(Subject):
         menu = tk.Canvas(self.window, width=self.width, height=self.menu_height, background=menu_color)
         menu.pack()
 
-    def draw_buttons(self):
+    def draw_buttons(self, color):
+
+        background_color = {'red': '#FF0000', None: None}
 
         start_button = tk.Button(self.window, command=self.start_button_handler, text="Restart", width=12, height=2)
         start_button.place(x=30, y=620)
 
-        pause_button = tk.Button(self.window, command=self.pause_button_handler, text="Pause", width=12, height=2)
+        pause_button = tk.Button(self.window, command=self.pause_button_handler, text="Pause",
+                                 background=background_color[color], width=12, height=2)
         pause_button.place(x=140, y=620)
 
-        speed_up_button = tk.Button(self.window, command=self.speed_up_button_handler, text="Speed Up", width=12, height=2)
+        speed_up_button = tk.Button(self.window, command=self.speed_up_button_handler, text="Speed Up",
+                                    width=12, height=2)
         speed_up_button.place(x=250, y=620)
 
-        speed_down_button = tk.Button(self.window, command=self.speed_down_button_handler, text="Speed Down", width=12, height=2)
+        speed_down_button = tk.Button(self.window, command=self.speed_down_button_handler, text="Speed Down",
+                                      width=12, height=2)
         speed_down_button.place(x=360, y=620)
 
     def draw_score(self, score):
@@ -79,7 +91,7 @@ class Gui(Subject):
         menu_color = '#D3D3D3'  # grey
         text = 'Punktestand: ' + str(score)
 
-        self.score_label = tk.Label(self.window, text=text, font='Arial 12',background=menu_color)
+        self.score_label = tk.Label(self.window, text=text, font='Arial 12', background=menu_color)
         self.score_label.place(x=470, y=615)
 
     def draw_speed(self, speed):
