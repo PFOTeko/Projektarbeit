@@ -26,6 +26,7 @@ class Field:
         self.step = 0
         self.count = 0
 
+        self.food = self.get_random_food_position()
         self.is_game_over = False
         self.is_special_food = False
 
