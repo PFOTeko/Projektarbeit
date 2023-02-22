@@ -107,6 +107,5 @@ if __name__ == "__main__":
     model = Field()
     view = Gui()
     controller = Controller(model, view)
-
     controller.run()
 
