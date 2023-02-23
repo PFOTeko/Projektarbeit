@@ -22,7 +22,9 @@ class Snake:
 
         return self.direction
 
-    def move(self):
+    def move(self, direction):
+
+        self.set_direction(direction)
 
         x, y = self.body[0]
         dx, dy = self.moves[self.direction]

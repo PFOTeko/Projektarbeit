@@ -7,19 +7,19 @@ class TestField(unittest.TestCase):
     def creat_field(self):
 
         width = 29
-        length = 29
+        height = 29
 
         # Creating a test playfield
 
         expected_result = []
 
-        for x in range(width):
-            for y in range(length):
+        for x in range((-1 * width) + 1, width - 1):
+            for y in range((-1 * height) + 1, height - 1):
                 expected_result.append((x, y))
 
         return expected_result
 
-    def test_food(self):
+    def test_get_random_food(self):
 
         expected_result = self.creat_field()
         field = Field()
@@ -34,35 +34,19 @@ class TestField(unittest.TestCase):
 
         self.assertIn(actual_result_food, expected_result)
 
-    def test_build_game(self):
+    def test_game_logic(self):
 
-        expected_result_food = self.creat_field()
         field = Field()
 
-        game = field.game_logic(None)
+        game = field.game_logic('Left')
 
-        actual_result_game_snake, actual_result_game_food, counter, game_over = game
+        actual_result_game_snake = game
 
         # Assert
-
-        print(actual_result_game_snake)
 
         expected_result_snake = [(-1, 0), (0, 0), (1, 0)]
 
         self.assertEqual(actual_result_game_snake, expected_result_snake)
-        self.assertIn(actual_result_game_food, expected_result_food)
-
-
-'''
-    def test_check_food_eaten(self):
-        Field.snake_position = [1, 2]
-        Field.food = [1, 2]
-        self.assertTrue(Field.check_food_eaten)
-
-        Field.snake_position = [1, 2]
-        Field.food = [3, 4]
-        self.assertFalse(Field.check_food_eaten)
-'''
 
 
 if __name__ == '__main__':
