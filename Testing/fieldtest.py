@@ -22,6 +22,7 @@ class TestField(unittest.TestCase):
     def test_get_random_food(self):
 
         expected_result = self.creat_field()
+
         field = Field()
 
         # Act
@@ -37,7 +38,6 @@ class TestField(unittest.TestCase):
     def test_check_eaten_food(self):
 
         field = Field()
-        field.place_food()
 
         # Act
 
@@ -52,12 +52,26 @@ class TestField(unittest.TestCase):
 
         self.assertEqual(actual_result_game_snake, expected_result_snake)
 
-    def test_check_eaten_special_food(self):
+    def test_place_special_food(self):
+
+        expected_result = self.creat_field()
 
         field = Field()
         field.counter = 5
-        field.is_special_food = False
+
         field.place_special_food()
+
+        # Act
+
+        actual_result_food = field.special_food
+
+        # Assert
+
+        self.assertIn(actual_result_food, expected_result)
+
+    def test_check_eaten_special_food(self):
+
+        field = Field()
 
         # Act
 
@@ -68,7 +82,7 @@ class TestField(unittest.TestCase):
 
         # Assert
 
-        expected_result_snake = 7
+        expected_result_snake = 2
 
         self.assertEqual(actual_result_game_snake, expected_result_snake)
 
