@@ -34,17 +34,41 @@ class TestField(unittest.TestCase):
 
         self.assertIn(actual_result_food, expected_result)
 
-    def test_game_logic(self):
+    def test_check_eaten_food(self):
 
         field = Field()
+        field.place_food()
 
-        game = field.game_logic('Left')
+        # Act
 
-        actual_result_game_snake = game
+        field.snake.body[0] = field.food
+        field.check_eaten_food()
+
+        actual_result_game_snake = field.counter
 
         # Assert
 
-        expected_result_snake = [(-1, 0), (0, 0), (1, 0)]
+        expected_result_snake = 1
+
+        self.assertEqual(actual_result_game_snake, expected_result_snake)
+
+    def test_check_eaten_special_food(self):
+
+        field = Field()
+        field.counter = 5
+        field.is_special_food = False
+        field.place_special_food()
+
+        # Act
+
+        field.snake.body[0] = field.special_food
+        field.check_eaten_special_food()
+
+        actual_result_game_snake = field.counter
+
+        # Assert
+
+        expected_result_snake = 7
 
         self.assertEqual(actual_result_game_snake, expected_result_snake)
 

@@ -4,10 +4,9 @@ from Game.snake import Snake
 
 class TestSnake(unittest.TestCase):
 
-    def test_snake_direction(self):
+    def test_snake_default_direction(self):
 
         start_position = [(0, 0), (1, 0), (2, 0)]
-
         snake = Snake(start_position)
 
         direction = None

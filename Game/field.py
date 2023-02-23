@@ -40,23 +40,27 @@ class Field:
 
         return random.choice(free_pos)
 
-    def check_food(self):
+    def place_food(self):
 
         if self.food is None or len(self.food) == 0:
             self.food = self.get_random_food_position()
 
-        if self.food == self.snake.body[0]:
-            self.food = self.get_random_food_position()
-            self.snake.grow()
-            self.counter += 1
-
-    def check_special_food(self):
+    def place_special_food(self):
 
         if self.counter % 5 == 0 and self.counter > 1 and self.is_special_food is False and self.count != self.counter:
             self.count = self.counter
             self.is_special_food = True
             self.step = 0
             self.special_food = self.get_random_food_position()
+
+    def check_eaten_food(self):
+
+        if self.food == self.snake.body[0]:
+            self.food = self.get_random_food_position()
+            self.snake.grow()
+            self.counter += 1
+
+    def check_eaten_special_food(self):
 
         if self.special_food == self.snake.body[0]:
             self.is_special_food = False
@@ -70,11 +74,14 @@ class Field:
 
         self.step += 1
 
+        self.place_food()
+        self.place_special_food()
+
         self.snake.change_side(self.width, self.height)
         self.snake.move(direction)
 
-        self.check_food()
-        self.check_special_food()
+        self.check_eaten_food()
+        self.check_eaten_special_food()
 
         if self.snake.check_self_crash():
             self.is_game_over = True
