@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import *
 from subject import Subject
 from tkinter.ttk import Label
 
@@ -12,7 +13,7 @@ class Gui(Subject):
         self.height = 600
         self.menu_height = 70
         self.object_size = 15
-        self.snake_start_position = ((self.width/2), (self.height/2))
+        self.snake_start_position = ((self.width / 2), (self.height / 2))
         screen_resolution = str(self.width) + 'x' + str(self.height + self.menu_height)
 
         self.window = tk.Tk()
@@ -34,6 +35,7 @@ class Gui(Subject):
 
     def run(self):
         self.window.mainloop()
+
     def update(self):
         self.window.update_idletasks()
         self.window.update()
@@ -121,22 +123,32 @@ class Gui(Subject):
         x0, y0 = self.snake_start_position
 
         x1, y1 = (x0 - (self.object_size / 2) + (x * self.object_size)), \
-            (y0 - (self.object_size / 2) + (y * self.object_size))
+                 (y0 - (self.object_size / 2) + (y * self.object_size))
 
         x2, y2 = (x0 + (self.object_size / 2) + (x * self.object_size)), \
-            (y0 + (self.object_size / 2) + (y * self.object_size))
+                 (y0 + (self.object_size / 2) + (y * self.object_size))
 
         return x1, y1, x2, y2
 
     def draw_snake(self, snake):
 
-        snake_color = '#7FFF00'  # green
+        snake_body_color = '#7FFF00'  # green
+
+        snake_head_color = '#006400'  # dark green
+
+        head = snake[0]
 
         for body_part in snake:
 
             x1, y1, x2, y2 = self.scale_objects(body_part)
 
-            self.field.create_oval(x1, y1, x2, y2, fill=snake_color)
+            if body_part == head:
+
+                self.field.create_oval(x1, y1, x2, y2, fill=snake_head_color)
+
+            else:
+
+                self.field.create_oval(x1, y1, x2, y2, fill=snake_body_color)
 
         self.field.pack()
 
@@ -159,5 +171,3 @@ class Gui(Subject):
         self.game_over_label.destroy()
         self.speed_label.destroy()
         self.score_label.destroy()
-
-
