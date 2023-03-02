@@ -1,5 +1,6 @@
 @startuml
 
+
 class Subject {
     observers
     attach(Observer)
@@ -11,42 +12,75 @@ class Observer {
     update()
 }
 
-class View #yellow{
+
+
+class Gui #yellow{
+__init__()
+new_game()
+run()
+update()
 keyboard_handler()
+start_button_handler()
+pause_button_handler()
+speed_up_button_handler()
+speed_down_button_handler()
 draw_background()
 draw_buttons()
+draw_score()
+draw_speed()
+draw_game_over()
+scale_objects()
 draw_snake()
 draw_food()
+clean_canvas()
+remove_label()
 }
+
+
 
 class Controller #lightgreen{
+__init__()
+new_game()
+update()
+get_speed()
+update_game()
+run()
+main()
 
 }
+namespace Model {
 
 class Snake #lightblue{
-Anzahl Körperteil
-Crash
-move_snake()
-grow_snake()
+__init__()
+set_direction()
+move()
+change_side()
+grow()
 check_self_crash()
 }
 
+
+
 class Field #lightblue{
+__init__()
 new game()
-pause()
-punktestand
-game over anzeige
-snake position
-food position
-speed
-food()
+get_random_food_position()
+place_food()
+place_special_food()
+check_eaten_food()
+check_eaten_special_food()
+game_logic()
+
 }
 
 Field --> Snake
-Subject <|-- Field
+
+}
+
+Subject <|-- Model
 Subject --> Observer
-Subject <|-- View
+Subject <|-- Gui
 Controller --|> Observer
-Controller --> View
-Controller --> Field
+Controller --> Gui
+Controller --> Model
 @enduml
